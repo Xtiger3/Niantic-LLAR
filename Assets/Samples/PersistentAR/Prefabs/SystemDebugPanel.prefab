@@ -92,7 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ed8436619eb45888f2b1c14aa52f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _arSession: {fileID: 0}
   _xrOrigin: {fileID: 0}
   _arPersistentAnchorManager: {fileID: 0}
   _trackingStateText: {fileID: 2875717679387260451}

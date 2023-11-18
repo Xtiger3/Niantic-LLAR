@@ -1214,7 +1214,7 @@ MonoBehaviour:
   _requestStatusText: {fileID: 104039935867410905}
   _queryRadiusSlider: {fileID: 104039935322419718}
   _queryRadiusText: {fileID: 104039936850957695}
-  _useLocationToggle: {fileID: 104039936699545457}
+  _useLocationToggle: {fileID: 0}
   _useLocationText: {fileID: 104039935299473485}
   _longlatCanvasRenderers:
   - {fileID: 104039936787174186}
