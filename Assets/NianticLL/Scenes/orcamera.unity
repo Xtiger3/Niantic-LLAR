@@ -496,7 +496,7 @@ PrefabInstance:
     - target: {fileID: 2982294553187493921, guid: b788caf524c30444f85f967a8858cbd5, type: 3}
       propertyPath: _camera
       value: 
-      objectReference: {fileID: 1044831148}
+      objectReference: {fileID: 1026867562}
     - target: {fileID: 2982294553187493921, guid: b788caf524c30444f85f967a8858cbd5, type: 3}
       propertyPath: _lightshipMap
       value: 
@@ -1892,6 +1892,40 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &605375214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7559527953821629240, guid: bc5d916f9dd5247d78249602eb079333, type: 3}
+  m_PrefabInstance: {fileID: 823689686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &605375217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605375214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc2bb52afcbd41c1a92bfbc435c657e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mouseScrollSpeed: 0.1
+  _pinchScrollSpeed: 0.002
+  _minimumMapRadius: 50
+  _maximumZoomDistance: 200
+  _camera: {fileID: 0}
+  _mapView: {fileID: 1179022941}
+  _gestureSettings:
+    _defaultZoom: 0.75
+    _mouseScrollZoomSpeed: 1.5
+    _touchPinchZoomSpeed: 2
+    _doubleTapZoomEnabled: 0
+    _doubleTapZoomSpeed: 6
+    _doubleTapMaxTime: 0.5
+  _focusObject: {fileID: 1210934143}
+  distance: 200
+  elevMeters: 350
+  pitchDegrees: 60
 --- !u!1 &621807119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1921,7 +1955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7a4a4610c44a8f851c8f63371d6480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapCamera: {fileID: 1044831148}
+  _mapCamera: {fileID: 1026867562}
   _lightshipMapView: {fileID: 1179022941}
   _floatingTextPrefab: {fileID: 7324948397990330343, guid: 29203652e6a4f417a98ef831bfcf1e2a, type: 3}
   _sawmillSpawner: {fileID: 1432486502}
@@ -2584,7 +2618,32 @@ PrefabInstance:
       propertyPath: _mapView
       value: 
       objectReference: {fileID: 1179022941}
-    m_RemovedComponents: []
+    - target: {fileID: 7559527953821629242, guid: bc5d916f9dd5247d78249602eb079333, type: 3}
+      propertyPath: distance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559527953821629242, guid: bc5d916f9dd5247d78249602eb079333, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559527953821629242, guid: bc5d916f9dd5247d78249602eb079333, type: 3}
+      propertyPath: elevMeters
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559527953821629242, guid: bc5d916f9dd5247d78249602eb079333, type: 3}
+      propertyPath: _focusObject
+      value: 
+      objectReference: {fileID: 1210934143}
+    - target: {fileID: 7559527953821629242, guid: bc5d916f9dd5247d78249602eb079333, type: 3}
+      propertyPath: pitchDegrees
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559527953821629242, guid: bc5d916f9dd5247d78249602eb079333, type: 3}
+      propertyPath: _minimumMapRadius
+      value: 50
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7559527953821629242, guid: bc5d916f9dd5247d78249602eb079333, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bc5d916f9dd5247d78249602eb079333, type: 3}
 --- !u!1 &847333689
 GameObject:
@@ -3574,6 +3633,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979234560}
   m_CullTransparentMesh: 1
+--- !u!20 &1026867562 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7559527954806023482, guid: bc5d916f9dd5247d78249602eb079333, type: 3}
+  m_PrefabInstance: {fileID: 823689686}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1028002217
 GameObject:
   m_ObjectHideFlags: 0
@@ -3844,11 +3908,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037334844}
   m_CullTransparentMesh: 1
---- !u!20 &1044831148 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 6614101381701084589, guid: 88c6861d76b4c49e18329bfbc54d44b5, type: 3}
-  m_PrefabInstance: {fileID: 1781714549}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1105852848
 GameObject:
   m_ObjectHideFlags: 0
@@ -5075,7 +5134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4679712108560714345, guid: 652c0f1d2f3184a959f719dbc90057a4, type: 3}
       propertyPath: _centerMapAtOrigin
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4679712108560714345, guid: 652c0f1d2f3184a959f719dbc90057a4, type: 3}
       propertyPath: _mapLayers.Array.size
