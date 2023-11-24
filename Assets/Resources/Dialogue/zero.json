@@ -1,0 +1,30 @@
+[
+    {
+        "speaker": "???",
+        "dialogueText": "Hey there human! What can I call you?"
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "Do you happen to know English?"
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "My name is Dr. Zero and I am from the [???] universe."
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "My company and I have been traveling around Earth learning different languages. This is our last destination and we are here to learn English."
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "We would like to exchange languages. Which language would you like to learn? [Chinese] [English]"
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "Okay! Let’s get started then!"
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "These [zoom in to waypoint] are called waypoints."
+    }
+]

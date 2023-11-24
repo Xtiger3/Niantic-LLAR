@@ -1,0 +1,30 @@
+[
+    {
+        "speaker": "OB",
+        "dialogueText": "Hi [player name]! I’ve heard from Dr. Zero that you are here to help us with our research! I’m an intern at [company name]."
+    },
+    {
+        "speaker": "You",
+        "dialogueText": "Um… Is your hand okay?"
+    },
+    {
+        "speaker": "OB",
+        "dialogueText": "Yeah it’s all good! It’s a pet i just got. I found it all sad and lonely… "
+    },
+    {
+        "speaker": "OB",
+        "dialogueText": "Can I have your [walkie talkie]?"
+    },
+    {
+        "speaker": "OB",
+        "dialogueText": "[beep boop beep]"
+    },
+    {
+        "speaker": "OB",
+        "dialogueText": "Okay! I’ve just added a [notecard/dictionary] app to your [walkie talkie]. I inputted 7 words for you to get started with."
+    },
+    {
+        "speaker": "OB",
+        "dialogueText": "Please come back when you have mastered the work!"
+    }
+]
