@@ -10,11 +10,12 @@ public class Dialogue
 {
     public string speaker;
     public string dialogueText;
+    public int trigger;
 }
 
 public class DialogueManager : MonoBehaviour
 {
-    //public string dialogueFileName = "quacky";
+    public string dialogueFileName;
 
     public float textSpeed;
     public float pauseLength;
@@ -29,7 +30,7 @@ public class DialogueManager : MonoBehaviour
 
     private Dialogue[] dialogues;
 
-    int index = 0;
+    public int index = 0;
 
     bool completeText = false;
 
@@ -84,8 +85,9 @@ public class DialogueManager : MonoBehaviour
         return dialogues;
     }
 
-    public void TextInit(string dialogueFileName)
+    public void TextInit(string dialogueFileName_)
     {
+        dialogueFileName = dialogueFileName_;
         StopAllCoroutines();
         gameObject.SetActive(true);
 

@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class VocabularySet : MonoBehaviour
 {
-    private List<Category> categories = new List<Category>();
+    public List<Category> categories = new List<Category>();
+    public static VocabularySet Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     void Start()
     {
