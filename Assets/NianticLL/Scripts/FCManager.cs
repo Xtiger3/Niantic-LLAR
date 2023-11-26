@@ -7,6 +7,7 @@ using TMPro;
 public class FCManager : MonoBehaviour
 {
     private Vector2 startTouchPosition, currentTouchPosition, endTouchPosition;
+    private Quaternion FrontDefaultRotation, BackDefaultRotation;
     private float touchStartTime;
     private bool isDragging = false;
 
@@ -53,7 +54,10 @@ public class FCManager : MonoBehaviour
         totalNum = Total.GetComponent<TextMeshProUGUI>();
         reviewNum = Review.GetComponent<TextMeshProUGUI>();
         learnedNum = Learned.GetComponent<TextMeshProUGUI>();
-        
+        FrontDefaultRotation = frontSide.transform.localRotation;
+        BackDefaultRotation = backSide.transform.localRotation;
+
+
     }
 
     public void InitializeFC(string combinationName)
@@ -103,9 +107,23 @@ public class FCManager : MonoBehaviour
         }
     }
 
+    private void ResetFCrotation()
+    {
+        if (isShowingBack)
+        {
+
+            frontSide.transform.localRotation = frontSide.transform.localRotation * Quaternion.Euler(0, 180, 0);
+            backSide.transform.localRotation = backSide.transform.localRotation * Quaternion.Euler(0, 180, 0);
+        }
+    }
+
 
     private void UpdateCardUI(VocabularySet.Word word)
     {
+        ResetFCrotation();
+        frontSide.SetActive(true);
+        backSide.SetActive(false);
+        isShowingBack = false;
         if (word != null)
         {
             
@@ -328,6 +346,9 @@ public class FCManager : MonoBehaviour
 
     private IEnumerator FlipCardRoutine(float duration)
     {
+        
+        // touch will not be detected during the rotation
+        Enable_TouchDetection = false;
         float time = 0;
         // Determine which side to flip
         
@@ -341,8 +362,8 @@ public class FCManager : MonoBehaviour
 
         while (time < duration)
         {
-            frontSide.transform.rotation = Quaternion.Lerp(startRotationFront, endRotationFront, time / duration);
-            backSide.transform.rotation = Quaternion.Lerp(startRotationBack, endRotationBack, time / duration);
+            frontSide.transform.localRotation = Quaternion.Lerp(startRotationFront, endRotationFront, time / duration);
+            backSide.transform.localRotation = Quaternion.Lerp(startRotationBack, endRotationBack, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
@@ -354,6 +375,7 @@ public class FCManager : MonoBehaviour
         isShowingBack = !isShowingBack;
         frontSide.SetActive(!isShowingBack);
         backSide.SetActive(isShowingBack);
+        Enable_TouchDetection = true;
     }
 
 }

@@ -68,11 +68,24 @@ public class VocabDisplayManager : MonoBehaviour
 
     public void DisplayWordsForCategory(string NPCName, string categoryName, Transform container)
     {
+        bool dontneedButton = false;
+        Transform button = container;
+        Debug.Log(container.name);
+        if (container.name == "Container")
+        {
+            
+            dontneedButton = true;
+        }
         VocabularySet.Category selectedCategory = vocabularySet.GetCategoryByName(categoryName);
 
         if (selectedCategory == null) return;
         
-        Transform button = container.GetChild(0);
+        if (!dontneedButton)
+        {
+
+             button = container.GetChild(0);
+
+        }
         foreach (VocabularySet.Word word in selectedCategory.Words)
         {
             // Instantiate the wordcard prefab
@@ -87,9 +100,11 @@ public class VocabDisplayManager : MonoBehaviour
 
             newWordCard.transform.SetParent(container, false);
         }
-
-        button.Find("Image").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][3];
-        button.SetAsLastSibling();
+        if (!dontneedButton)
+        {
+            button.Find("Image").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][3];
+            button.SetAsLastSibling();
+        }
     }
 
     public void ShowCategories()
