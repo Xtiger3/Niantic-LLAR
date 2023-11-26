@@ -158,4 +158,14 @@ public class VocabDisplayManager : MonoBehaviour
         setScrollView.SetActive(false);
         CloseCat.SetActive(false);
     }
+
+    public void ShowVocabScrollview()
+    {
+        BackToCat.SetActive(true);
+        vocabScrollView.SetActive(true);
+        // MakiCat.SetActive(true);
+        // OBCat.SetActive(true);
+        //setScrollView.SetActive(true);
+        
+    }
 }

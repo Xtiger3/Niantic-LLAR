@@ -123,7 +123,7 @@ public class VocabularySet : MonoBehaviour
 
         public void AddWord(string original, string translation)
         {
-            Words.Add(new Word(translation, original));
+            Words.Add(new Word(original, translation));
         }
 
         public void Unlock() {

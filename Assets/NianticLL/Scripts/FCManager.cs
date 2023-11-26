@@ -7,7 +7,6 @@ using TMPro;
 public class FCManager : MonoBehaviour
 {
     private Vector2 startTouchPosition, currentTouchPosition, endTouchPosition;
-    private Quaternion FrontDefaultRotation, BackDefaultRotation;
     private float touchStartTime;
     private bool isDragging = false;
 
@@ -19,8 +18,15 @@ public class FCManager : MonoBehaviour
     public GameObject ResultsPage;
     public GameObject Total;
     public GameObject Learned;
+    public GameObject BackButton;
     public GameObject Review;
     private bool isShowingBack = false;
+
+    // FC Instructions
+    public TextMeshProUGUI FCInstruction;
+    public Color startColor = Color.black;
+    public Color shineColor = Color.green;
+    public float Instruction_duration = 2f;
 
     // Swipe Detection Parameters
     private float maxSwipeTime = 0.5f; // Maximum time for a swipe
@@ -54,8 +60,7 @@ public class FCManager : MonoBehaviour
         totalNum = Total.GetComponent<TextMeshProUGUI>();
         reviewNum = Review.GetComponent<TextMeshProUGUI>();
         learnedNum = Learned.GetComponent<TextMeshProUGUI>();
-        FrontDefaultRotation = frontSide.transform.localRotation;
-        BackDefaultRotation = backSide.transform.localRotation;
+        
 
 
     }
@@ -69,8 +74,9 @@ public class FCManager : MonoBehaviour
 
         NPCName = splitStrings[0];
         categoryName = splitStrings.Length > 1 ? splitStrings[1] : "";
-        Debug.Log(NPCName);
-        Debug.Log(categoryName);
+
+        //Debug.Log("NPCName: " + NPCName);
+        //Debug.Log("categoryName: " + categoryName);
         selectedCategory = vocabularySet.GetCategoryByName(categoryName);
         ReviewCategory = vocabularySet.GetCategoryByName("Review");
         if (ReviewCategory == null)
@@ -95,9 +101,24 @@ public class FCManager : MonoBehaviour
         //Debug.Log(selectedCategory.Words[0].Translation);
         UpdateCardUI(selectedCategory.Words[0]);
         Enable_TouchDetection = true;
+        BackButton.SetActive(true);
+        ShowFCinstruction();
 
 
     }
+
+    public void BackToVocab()
+    {
+        Enable_TouchDetection = false;
+        frontSide.SetActive(false);
+        backSide.SetActive(false);
+        SignOfKnown.SetActive(false);
+        SignOfUnknown.SetActive(false);
+        ResultsPage.SetActive(false);
+        vacabDisplayManager.ShowVocabScrollview();
+        BackButton.SetActive(false);
+    }
+
 
     public void ResetLearningLevels()
     {
@@ -165,6 +186,27 @@ public class FCManager : MonoBehaviour
        
     }
 
+    private void ShowFCinstruction()
+    {
+        StartCoroutine(ShineTextRoutine());
+    }
+
+    private IEnumerator ShineTextRoutine()
+    {
+        FCInstruction.gameObject.SetActive(true);
+        float elapsed = 0;
+        while (elapsed < Instruction_duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Sin(Mathf.PI * elapsed / Instruction_duration); // Use Sin to create a smooth in and out effect
+            FCInstruction.color = Color.Lerp(startColor, shineColor, t);
+            yield return null;
+        }
+
+        // Optionally reset to start color after shining
+        FCInstruction.color = startColor;
+        FCInstruction.gameObject.SetActive(false);
+    }
     void Update()
     {
         if (Enable_TouchDetection)
@@ -295,7 +337,7 @@ public class FCManager : MonoBehaviour
             {
                 UpdateLearningLevel(WordsIndex, !isSwipeRight);
                 UpdateCardUI(selectedCategory.Words[WordsIndex]);
-                UpdateReviewCategory(selectedCategory.Words[WordsIndex], LearningLevel[WordsIndex] == 2);
+                UpdateReviewCategory(selectedCategory.Words[WordsIndex], LearningLevel[WordsIndex] != 2);
 
                 WordsIndex++;
             }
@@ -319,7 +361,7 @@ public class FCManager : MonoBehaviour
                 totalNum.text = WordsTotal.ToString();
                 reviewNum.text = WordsReview.ToString();
                 learnedNum.text = WordsLearned.ToString();
-                vacabDisplayManager.DisplayWordsForCategory(NPCName, categoryName, ReviewContainer.transform);
+                vacabDisplayManager.DisplayWordsForCategory(NPCName, "Review", ReviewContainer.transform);
 
 
 
