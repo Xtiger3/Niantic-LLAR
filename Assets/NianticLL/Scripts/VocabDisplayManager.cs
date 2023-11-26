@@ -41,7 +41,7 @@ public class VocabDisplayManager : MonoBehaviour
 
         foreach (string category in NPCs[NPCName]) {
             GameObject newCategoryCard = Instantiate(categoryCardPrefab);
-            newCategoryCard.name = category;
+            newCategoryCard.name = NPCName + "," + category;
             Transform header = newCategoryCard.transform.Find("Header");
 
             header.Find("Background").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][0];

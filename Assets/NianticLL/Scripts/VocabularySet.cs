@@ -74,6 +74,7 @@ public class VocabularySet : MonoBehaviour
         categories.Add(transportsCategory);
         categories.Add(animalsCategory);
         categories.Add(idkkk);
+        categories.Add(reviewCategory);
     }
 
     public Category GetCategoryByName(string categoryName)
@@ -110,7 +111,7 @@ public class VocabularySet : MonoBehaviour
 
         public void AddWord(string original, string translation)
         {
-            Words.Add(new Word(original, translation));
+            Words.Add(new Word(translation, original));
         }
 
         public void Unlock() {

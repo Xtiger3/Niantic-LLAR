@@ -14,6 +14,11 @@ public class FCManager : MonoBehaviour
     public GameObject backSide;
     public GameObject SignOfKnown;
     public GameObject SignOfUnknown;
+    public GameObject ReviewContainer;
+    public GameObject ResultsPage;
+    public GameObject Total;
+    public GameObject Learned;
+    public GameObject Review;
     private bool isShowingBack = false;
 
     // Swipe Detection Parameters
@@ -22,28 +27,57 @@ public class FCManager : MonoBehaviour
 
     // Vocab set parameters
     public VocabularySet vocabularySet;
+    private VocabDisplayManager vacabDisplayManager;
     private VocabularySet.Category selectedCategory;
     private VocabularySet.Category ReviewCategory;
+    private TextMeshProUGUI totalNum;
+    private TextMeshProUGUI reviewNum;
+    private TextMeshProUGUI learnedNum;
     private int WordsTotal;
+    private int WordsLearned;
+    private int WordsReview;
     private List<int> LearningLevel;
     private int WordsIndex = 0;
     private int Round = 0;
+    private bool Enable_TouchDetection = false;
+
+    // NPC and Category Name
+    private string NPCName;
+    private string categoryName;
+    private string combineName;
 
     private void Start()
     {
 
+        vacabDisplayManager = FindObjectOfType<VocabDisplayManager>();
+        totalNum = Total.GetComponent<TextMeshProUGUI>();
+        reviewNum = Review.GetComponent<TextMeshProUGUI>();
+        learnedNum = Learned.GetComponent<TextMeshProUGUI>();
         
-
     }
 
-    public void InitializeFC(string categoryName)
+    public void InitializeFC(string combinationName)
     {
+        //Debug.Log(categoryName);
+        ResultsPage.SetActive(false);
+        combineName = combinationName;
+        string[] splitStrings = combinationName.Split(',');
+
+        NPCName = splitStrings[0];
+        categoryName = splitStrings.Length > 1 ? splitStrings[1] : "";
+        Debug.Log(NPCName);
         Debug.Log(categoryName);
         selectedCategory = vocabularySet.GetCategoryByName(categoryName);
         ReviewCategory = vocabularySet.GetCategoryByName("Review");
+        if (ReviewCategory == null)
+        {
+            Debug.Log("reviewcategory not detected");
+        }
+        
+
         if (ReviewCategory != null && ReviewCategory.Words != null)
         {
-
+            
             ReviewCategory.Words.Clear();
         }
         frontSide.SetActive(true);
@@ -56,6 +90,7 @@ public class FCManager : MonoBehaviour
         //Debug.Log(selectedCategory.Words[0].Original);
         //Debug.Log(selectedCategory.Words[0].Translation);
         UpdateCardUI(selectedCategory.Words[0]);
+        Enable_TouchDetection = true;
 
 
     }
@@ -74,8 +109,8 @@ public class FCManager : MonoBehaviour
         if (word != null)
         {
             
-            TextMeshProUGUI wordText = frontSide.transform.Find("word").GetComponent<TextMeshProUGUI>();
-            TextMeshProUGUI translationText = backSide.transform.Find("translation").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI translationText = frontSide.transform.Find("translation").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI wordText =  backSide.transform.Find("word").GetComponent<TextMeshProUGUI>();
             wordText.text = word.Original;
             translationText.text = word.Translation;
         }
@@ -91,17 +126,22 @@ public class FCManager : MonoBehaviour
         }
     }
 
+
     public void UpdateLearningLevel(int wordIndex, bool known)
     {
         
             if (known)
             {
-                // Increase the learning level if the word is known
+            // Increase the learning level if the word is known
+                SignOfKnown.SetActive(known);
+                SignOfUnknown.SetActive(!known);
                 LearningLevel[wordIndex] = Mathf.Min(LearningLevel[wordIndex] + 1, 2); // Max level is 2
             }
             else
             {
-                // Reset to 0 if the word is not known
+            // Reset to 0 if the word is not known
+                SignOfKnown.SetActive(known);
+                SignOfUnknown.SetActive(!known);
                 LearningLevel[wordIndex] = 0;
             }
        
@@ -109,58 +149,93 @@ public class FCManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (Enable_TouchDetection)
         {
-            Touch touch = Input.GetTouch(0);
 
-            switch (touch.phase)
+        
+         #if UNITY_EDITOR
+            // Simulate touch with mouse input in the Unity Editor
+            if (Input.GetMouseButtonDown(0)) // Equivalent to TouchPhase.Began
             {
-                case TouchPhase.Began:
-                    touchStartTime = Time.time;
-                    startTouchPosition = touch.position;
-                    currentTouchPosition = touch.position;
-                    isDragging = true;
-                    break;
-
-                case TouchPhase.Moved:
-                    if (isDragging)
-                    {
-                        currentTouchPosition = touch.position;
-                        MoveCardWithFinger();
-                    }
-                    break;
-
-                case TouchPhase.Ended:
-                    if (isDragging)
-                    {
-                        endTouchPosition = touch.position;
-                        ResetFCPosition();
-                        DetectTouchAction();
-                        isDragging = false;
-                    }
-                    break;
+                touchStartTime = Time.time;
+                startTouchPosition = Input.mousePosition;
+                currentTouchPosition = Input.mousePosition;
+                isDragging = true;
             }
+            else if (Input.GetMouseButton(0)) // Equivalent to TouchPhase.Moved
+            {
+                if (isDragging)
+                {
+                    currentTouchPosition = Input.mousePosition;
+                    MoveCardWithFinger();
+                }
+            }
+            else if (Input.GetMouseButtonUp(0)) // Equivalent to TouchPhase.Ended
+            {
+                if (isDragging)
+                {
+                    endTouchPosition = Input.mousePosition;
+                    ResetFCPosition();
+                    DetectTouchAction();
+                    isDragging = false;
+                }
+            }
+        #else
+
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+
+                switch (touch.phase)
+                {
+                    case TouchPhase.Began:
+                        touchStartTime = Time.time;
+                        startTouchPosition = touch.position;
+                        currentTouchPosition = touch.position;
+                        isDragging = true;
+                        break;
+
+                    case TouchPhase.Moved:
+                        if (isDragging)
+                        {
+                            currentTouchPosition = touch.position;
+                            MoveCardWithFinger();
+                        }
+                        break;
+
+                    case TouchPhase.Ended:
+                        if (isDragging)
+                        {
+                            endTouchPosition = touch.position;
+                            ResetFCPosition();
+                            DetectTouchAction();
+                            isDragging = false;
+                        }
+                        break;
+                }
+            }
+            #endif
         }
     }
 
     private void MoveCardWithFinger()
     {
-        // Assuming currentTouchPosition is in screen coordinates
-        Vector3 screenPoint = new Vector3(currentTouchPosition.x, currentTouchPosition.y, 10.0f); // Adjust the z value as needed
-        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
+        //// Assuming currentTouchPosition is in screen coordinates
+        //Vector3 screenPoint = new Vector3(currentTouchPosition.x, currentTouchPosition.y, 10.0f); // Adjust the z value as needed
+        //Vector3 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
 
         // Set new positions
-        Vector3 newPositionFront = new Vector3(worldPoint.x, frontSide.transform.position.y, frontSide.transform.position.z);
-        Vector3 newPositionBack = new Vector3(worldPoint.x, backSide.transform.position.y, backSide.transform.position.z);
+        Vector3 newPositionFront = new Vector3(currentTouchPosition.x, frontSide.transform.position.y, 0);
+        Vector3 newPositionBack = new Vector3(currentTouchPosition.x, backSide.transform.position.y, 0);
 
-        frontSide.transform.position = newPositionFront;
-        backSide.transform.position = newPositionBack;
+        frontSide.transform.localPosition = newPositionFront;
+        backSide.transform.localPosition = newPositionBack;
     }
 
     private void ResetFCPosition()
     {
-        frontSide.transform.position = new Vector3(0, 0, 0);
-        backSide.transform.position = new Vector3(0, 0, 0);
+        frontSide.transform.localPosition = new Vector3(0, 0, 0);
+        backSide.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     private void DetectTouchAction()
@@ -176,6 +251,12 @@ public class FCManager : MonoBehaviour
         {
             FlipCard();
         }
+    }
+
+    public void ReplayTheGame()
+    {
+        InitializeFC(combineName);
+        
     }
 
     private void ProcessSwipe()
@@ -196,24 +277,45 @@ public class FCManager : MonoBehaviour
             {
                 UpdateLearningLevel(WordsIndex, !isSwipeRight);
                 UpdateCardUI(selectedCategory.Words[WordsIndex]);
-                UpdateReviewCategory(selectedCategory.Words[WordsIndex], LearningLevel[WordsIndex] != 2);
+                UpdateReviewCategory(selectedCategory.Words[WordsIndex], LearningLevel[WordsIndex] == 2);
 
                 WordsIndex++;
             }
 
         }else 
         {
+            if (Round == 1)
+            {
+                Debug.Log(ReviewCategory.Words.Count);
+                WordsReview = ReviewCategory.Words.Count;
+                WordsLearned = WordsTotal - WordsReview;
+
+                ResultsPage.SetActive(true);
+                frontSide.SetActive(false);
+                backSide.SetActive(false);
+                SignOfKnown.SetActive(false);
+                SignOfUnknown.SetActive(false);
+                Enable_TouchDetection = false;
+                
+
+                totalNum.text = WordsTotal.ToString();
+                reviewNum.text = WordsReview.ToString();
+                learnedNum.text = WordsLearned.ToString();
+                vacabDisplayManager.DisplayWordsForCategory(NPCName, categoryName, ReviewContainer.transform);
+
+
+
+            }
+
             if (Round == 0)
             {
 
                 Round++;
+                WordsIndex = 0;
 
             }
 
-            if (Round == 1)
-            {
-
-            }
+            
         }
 
 
@@ -227,30 +329,31 @@ public class FCManager : MonoBehaviour
     private IEnumerator FlipCardRoutine(float duration)
     {
         float time = 0;
-        Quaternion startRotation = transform.rotation;
-        Quaternion endRotation = startRotation * Quaternion.Euler(0, 180, 0);
+        // Determine which side to flip
+        
+        Quaternion startRotationFront = frontSide.transform.localRotation; 
+        Quaternion endRotationFront = startRotationFront*Quaternion.Euler(0, 180, 0); // Rotate 180 degrees around the y-axis
+        Quaternion startRotationBack = backSide.transform.localRotation; 
+        Quaternion endRotationBack = startRotationBack*Quaternion.Euler(0, 180, 0); // Rotate 180 degrees around the y-axis
+
+
+
 
         while (time < duration)
         {
-            transform.rotation = Quaternion.Lerp(startRotation, endRotation, time / duration);
+            frontSide.transform.rotation = Quaternion.Lerp(startRotationFront, endRotationFront, time / duration);
+            backSide.transform.rotation = Quaternion.Lerp(startRotationBack, endRotationBack, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
 
-        transform.rotation = endRotation; // Ensure it's exactly at the end rotation
+        frontSide.transform.localRotation = endRotationFront;
+        backSide.transform.localRotation = endRotationBack;
 
-        // Toggle the visibility of the front and back sides
-        if (isShowingBack)
-        {
-            frontSide.SetActive(true);
-            backSide.SetActive(false);
-        }
-        else
-        {
-            frontSide.SetActive(false);
-            backSide.SetActive(true);
-        }
+        // Toggle which side is showing
         isShowingBack = !isShowingBack;
+        frontSide.SetActive(!isShowingBack);
+        backSide.SetActive(isShowingBack);
     }
 
 }
