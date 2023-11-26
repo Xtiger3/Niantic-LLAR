@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.niantic.lightship.maps": {
-      "version": "file:/Users/sonialin/Downloads/com.niantic.lightship.maps-0.4.0 (1).tgz",
+      "version": "file:/Users/emileemeng/Downloads/com.niantic.lightship.maps-0.4.0.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
