@@ -8,6 +8,7 @@ public class VocabularySet : MonoBehaviour
 
     void Start()
     {
+        Category reviewCategory = new Category("Review");
         Category numsCategory = new Category("NUMBERS 1-10");
         numsCategory.Words = new List<Word> {new Word("1", "一 (Ichi)"),
                                             new Word("2", "二 (Ni)"),

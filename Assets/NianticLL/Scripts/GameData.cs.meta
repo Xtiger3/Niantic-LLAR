@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/NianticLL/Scripts/GameData.cs.meta
 guid: 9320cf0a123ce484998f2dbe159d7eb6
+========
+guid: 924a6eb238a377c409cf15e683a31ab0
+>>>>>>>> Stashed changes:Assets/NianticLL/Scripts/FCManager.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -41,6 +41,7 @@ public class VocabDisplayManager : MonoBehaviour
 
         foreach (string category in NPCs[NPCName]) {
             GameObject newCategoryCard = Instantiate(categoryCardPrefab);
+            newCategoryCard.name = category;
             Transform header = newCategoryCard.transform.Find("Header");
 
             header.Find("Background").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][0];
@@ -131,5 +132,15 @@ public class VocabDisplayManager : MonoBehaviour
         setScrollView.SetActive(true);
         CloseCat.SetActive(true);
         Camera.main.backgroundColor = new Color(255, 240, 230, 100);
+    }
+
+    public void ClearEverything()
+    {
+        BackToCat.SetActive(false);
+        vocabScrollView.SetActive(false);
+        // MakiCat.SetActive(true);
+        // OBCat.SetActive(true);
+        setScrollView.SetActive(false);
+        CloseCat.SetActive(false);
     }
 }
