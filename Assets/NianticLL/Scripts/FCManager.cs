@@ -285,9 +285,9 @@ public class FCManager : MonoBehaviour
         //Vector3 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
 
         // Set new positions
-        Vector3 newPositionFront = new Vector3(currentTouchPosition.x, frontSide.transform.position.y, 0);
-        Vector3 newPositionBack = new Vector3(currentTouchPosition.x, backSide.transform.position.y, 0);
-
+        Vector3 newPositionFront = new Vector3(currentTouchPosition.x - 1170f/2, frontSide.transform.position.y, 0);
+        Vector3 newPositionBack = new Vector3(currentTouchPosition.x - 1170f/2, backSide.transform.position.y, 0);
+        
         frontSide.transform.localPosition = newPositionFront;
         backSide.transform.localPosition = newPositionBack;
     }
@@ -327,7 +327,7 @@ public class FCManager : MonoBehaviour
             if (Round == 0)
             { 
 
-                UpdateLearningLevel(WordsIndex, !isSwipeRight);
+                UpdateLearningLevel(WordsIndex, isSwipeRight);
                 UpdateCardUI(selectedCategory.Words[WordsIndex]);
                 WordsIndex++;
 
@@ -335,7 +335,7 @@ public class FCManager : MonoBehaviour
 
             if (Round == 1)
             {
-                UpdateLearningLevel(WordsIndex, !isSwipeRight);
+                UpdateLearningLevel(WordsIndex, isSwipeRight);
                 UpdateCardUI(selectedCategory.Words[WordsIndex]);
                 UpdateReviewCategory(selectedCategory.Words[WordsIndex], LearningLevel[WordsIndex] != 2);
 
