@@ -29,6 +29,7 @@ public class FCManager : MonoBehaviour
     public float Instruction_duration = 2f;
 
     // Swipe Detection Parameters
+    private int screenWidth = Screen.width;
     private float maxSwipeTime = 0.5f; // Maximum time for a swipe
     private float minSwipeDistance = 200f; // Minimum distance for a swipe
 
@@ -52,6 +53,10 @@ public class FCManager : MonoBehaviour
     private string NPCName;
     private string categoryName;
     private string combineName;
+
+    // OX logic
+    private Coroutine SignCoroutine;
+    private GameObject ShowingSign;
 
     private void Start()
     {
@@ -172,18 +177,44 @@ public class FCManager : MonoBehaviour
             if (known)
             {
             // Increase the learning level if the word is known
-                SignOfKnown.SetActive(known);
-                SignOfUnknown.SetActive(!known);
+            //SignOfKnown.SetActive(known);
+            //SignOfUnknown.SetActive(!known);
+                DisplayOX(SignOfKnown, 1f);
                 LearningLevel[wordIndex] = Mathf.Min(LearningLevel[wordIndex] + 1, 2); // Max level is 2
             }
             else
             {
             // Reset to 0 if the word is not known
-                SignOfKnown.SetActive(known);
-                SignOfUnknown.SetActive(!known);
+            //SignOfKnown.SetActive(known);
+            //SignOfUnknown.SetActive(!known);
+                DisplayOX(SignOfUnknown, 1f);
                 LearningLevel[wordIndex] = 0;
             }
        
+    }
+
+    private void DisplayOX(GameObject Sign, float Delay)
+    {
+        if (SignCoroutine != null)
+        {
+            StopCoroutine(SignCoroutine);
+            if (ShowingSign != null)
+            {
+
+                ShowingSign.SetActive(false);
+            }
+        }
+        ShowingSign = Sign;
+        ShowingSign.SetActive(true);
+        SignCoroutine = StartCoroutine(HideImageAfterDelay(ShowingSign, Delay));
+
+
+    }
+
+    IEnumerator HideImageAfterDelay(GameObject Sign, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Sign.SetActive(false);
     }
 
     private void ShowFCinstruction()
@@ -285,8 +316,8 @@ public class FCManager : MonoBehaviour
         //Vector3 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
 
         // Set new positions
-        Vector3 newPositionFront = new Vector3(currentTouchPosition.x - 1170f/2, frontSide.transform.position.y, 0);
-        Vector3 newPositionBack = new Vector3(currentTouchPosition.x - 1170f/2, backSide.transform.position.y, 0);
+        Vector3 newPositionFront = new Vector3((currentTouchPosition.x - screenWidth / 2)*2, frontSide.transform.position.y, 0);
+        Vector3 newPositionBack = new Vector3((currentTouchPosition.x - screenWidth / 2)*2, backSide.transform.position.y, 0);
         
         frontSide.transform.localPosition = newPositionFront;
         backSide.transform.localPosition = newPositionBack;
