@@ -11,6 +11,7 @@ public class Dialogue
     public string speaker;
     public string dialogueText;
     public int trigger;
+    public string[] choices;
 }
 
 public class DialogueManager : MonoBehaviour
@@ -33,6 +34,12 @@ public class DialogueManager : MonoBehaviour
     public int index = 0;
 
     bool completeText = false;
+
+    public GameObject choice1;
+    public GameObject choice2;
+
+    public GameObject nameInputPanel;
+    public GameObject pickLanguagePanel;
 
     private void Start()
     {
@@ -87,6 +94,10 @@ public class DialogueManager : MonoBehaviour
 
     public void TextInit(string dialogueFileName_)
     {
+        choice1.SetActive(false);
+        choice2.SetActive(false);
+        GetComponent<Button>().enabled = true;
+
         dialogueFileName = dialogueFileName_;
         StopAllCoroutines();
         gameObject.SetActive(true);
@@ -98,13 +109,15 @@ public class DialogueManager : MonoBehaviour
         nameText.text = firstDialogue.speaker;
         dialogueText.text = "";
 
-        StartCoroutine(TextFlow(firstDialogue.dialogueText));
+        ToggleChoices(index);
+
+        string dialogueText_ = firstDialogue.dialogueText.Replace("_", PlayerPrefs.GetString("name"));
+        StartCoroutine(TextFlow(dialogueText_));
     }
 
     public void ReplaceUI(Sprite dialogueSprite)
     {
         dialogueImage.sprite = dialogueSprite;
-
     }
 
     IEnumerator TextFlow(string dialogue)
@@ -125,10 +138,25 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text = str;
         }
         completeText = true;
+
+        if (dialogues[index].trigger == 1)
+        {
+            nameInputPanel.SetActive(true);
+            GetComponent<Button>().enabled = false;
+        }
+        if (dialogues[index].trigger == 2)
+        {
+            pickLanguagePanel.SetActive(true);
+            GetComponent<Button>().enabled = false;
+        }
     }
 
     private void NextPage()
     {
+        choice1.SetActive(false);
+        choice2.SetActive(false);
+        GetComponent<Button>().enabled = true;
+
         if (dialogues.Length <= 1)
         {
             return;
@@ -146,7 +174,27 @@ public class DialogueManager : MonoBehaviour
 
         nameText.text = dialogues[index].speaker;
 
-        StartCoroutine(TextFlow(dialogues[index].dialogueText));
+        //choices
+        ToggleChoices(index);
+
+        string dialogueText_ = dialogues[index].dialogueText.Replace("_", PlayerPrefs.GetString("name"));
+        StartCoroutine(TextFlow(dialogueText_));
+    }
+
+    private void ToggleChoices(int index)
+    {
+        //choices
+        if (dialogues[index].choices.Length != 0)
+        {
+            choice1.SetActive(true);
+            choice1.GetComponentInChildren<TextMeshProUGUI>().text = dialogues[index].choices[0];
+            if (dialogues[index].choices.Length == 2)
+            {
+                choice2.SetActive(true);
+                choice1.GetComponentInChildren<TextMeshProUGUI>().text = dialogues[index].choices[1];
+            }
+            GetComponent<Button>().enabled = false;
+        }
     }
 
     public void ActivateDialogue()

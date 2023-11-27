@@ -1,25 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class IntroController : MonoBehaviour
 {
-    public GameObject nameInput;
+    public GameObject nameInputPanel;
+    public TMP_InputField nameInput;
     public DialogueManager dm;
-
-    public void ActivateNameInput()
-    {
-        if (dm.dialogueFileName == "zero" && dm.index == 1)
-        {
-            nameInput.SetActive(true);
-            Debug.Log("hello");
-        }
-    }
 
     public void SetName()
     {
-        nameInput.SetActive(false);
-        PlayerPrefs.SetString("name", "");
+        nameInputPanel.SetActive(true);
+        PlayerPrefs.SetString("name", nameInput.text);
         dm.DialogueNext();
+    }
+    public void ClosePanel(GameObject panel)
+    {
+        panel.SetActive(false);
     }
 }
