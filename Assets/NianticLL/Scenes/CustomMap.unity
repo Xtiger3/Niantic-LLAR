@@ -1909,23 +1909,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cc2bb52afcbd41c1a92bfbc435c657e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseScrollSpeed: 0.1
-  _pinchScrollSpeed: 0.002
-  _minimumMapRadius: 50
-  _maximumZoomDistance: 200
-  _camera: {fileID: 0}
-  _mapView: {fileID: 1179022941}
-  _gestureSettings:
-    _defaultZoom: 0.75
-    _mouseScrollZoomSpeed: 1.5
-    _touchPinchZoomSpeed: 2
-    _doubleTapZoomEnabled: 0
-    _doubleTapZoomSpeed: 6
-    _doubleTapMaxTime: 0.5
-  _focusObject: {fileID: 1210934143}
-  distance: 200
-  elevMeters: 350
-  pitchDegrees: 60
 --- !u!1 &621807119
 GameObject:
   m_ObjectHideFlags: 0
@@ -4967,11 +4950,11 @@ PrefabInstance:
       objectReference: {fileID: 1106550023}
     - target: {fileID: 4679712108560714345, guid: 652c0f1d2f3184a959f719dbc90057a4, type: 3}
       propertyPath: _defaultLocation._latitude
-      value: 47
+      value: 42.275059
       objectReference: {fileID: 0}
     - target: {fileID: 4679712108560714345, guid: 652c0f1d2f3184a959f719dbc90057a4, type: 3}
       propertyPath: _defaultLocation._longitude
-      value: -122.353408813477
+      value: -83.737419
       objectReference: {fileID: 0}
     - target: {fileID: 4679712108560714347, guid: 652c0f1d2f3184a959f719dbc90057a4, type: 3}
       propertyPath: m_RootOrder
