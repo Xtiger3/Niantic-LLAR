@@ -1,30 +1,154 @@
 [
     {
         "speaker": "???",
-        "dialogueText": "Hey there human! What can I call you?"
+        "dialogueText": "Hey you!",
+        "trigger": 0,
+        "choices": [
+            "Yea??",
+            "No you!"
+        ]
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "Do you happen to know English?"
+        "dialogueText": "...you can call me Dr. Zero. I’ve just traveled from my planet Aeoien to come here to your world Earth!",
+        "trigger": 0,
+        "choices": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "My name is Dr. Zero and I am from the [???] universe."
+        "dialogueText": "What’s your name?",
+        "trigger": 1,
+        "choices": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "My company and I have been traveling around Earth learning different languages. This is our last destination and we are here to learn English."
+        "dialogueText": "Nice to meet you, _. I am really impressed with the speed at which humans learn language.",
+        "trigger": 0,
+        "choices": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "We would like to exchange languages. Which language would you like to learn? [Chinese] [English]"
+        "dialogueText": "My company aims at creating a machine that can efficiently replicate this language learning ability.",
+        "trigger": 0,
+        "choices": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "Okay! Let’s get started then!"
+        "dialogueText": "We’ve already developed a harmless chip that can monitor brain activity.",
+        "trigger": 0,
+        "choices": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "These [zoom in to waypoint] are called waypoints."
+        "dialogueText": "We would like to hire a human to help us study the memorization process.",
+        "trigger": 0,
+        "choices": []
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "You’re the first one I’ve bumped into so you have to help! All you have to do is learn a foreign language!",
+        "trigger": 0,
+        "choices": []
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "Would you like to help us with our research?",
+        "trigger": 0,
+        "choices": [
+            "I would love to!",
+            "Sure, if I get paid well."
+        ]
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "Great! You’re officially employed now. Let me give you your researcher identification tag!",
+        "trigger": 0,
+        "choices": []
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "Ah, 115 is a good number for our new great employee! So, what language would you like to learn?",
+        "trigger": 2,
+        "choices": []
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "Let’s get started then! Here’s our company's specially developed communication device the tc v21!",
+        "trigger": 0,
+        "choices": []
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "This device will hold all of your work material and help you communicate with me and all of your other colleagues you’ll meet!",
+        "trigger": 0,
+        "choices": []
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "This first app holds all of the study material you need to memorize!",
+        "trigger": 0,
+        "choices": []
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "Here I’ll add my information now into your contact book!",
+        "trigger": 0,
+        "choices": []
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "If I don’t see you in person I'll send out some periodic reminders through the messaging app to check back in with you to see how you’re doing!",
+        "trigger": 0,
+        "choices": [
+            "Thanks, boss!"
+        ]
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": " No problem _! We’ve set up waypoint connection points around your area so when you have everything memorized come to us so we can analyze your data!",
+        "trigger": 0,
+        "choices": []
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "To save us traveling energy, we all have holographic transfers of ourselves- but it’ll be like we’re actually here!",
+        "trigger": 0,
+        "choices": []
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "The camera on the tc will be able to see us! Currently #008 and #114 also have holographic transfers on Earth right now!",
+        "trigger": 0,
+        "choices": []
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "Go walk around and meet then! According to your earthling studies, walking while memorizing enhances retainment!",
+        "trigger": 0,
+        "choices": [ "Really?" ]
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "Yeah we’ve checked it with many studies. Anyways, Here’s your first set of words!",
+        "trigger": 0,
+        "choices": []
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "I’ve updated your vocabulary app. When you’re ready, walk to the waypoint where I’m located and hold up the device to see us!",
+        "trigger": 0,
+        "choices": []
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "If you aren’t able to complete this during working hours, you will be expected to work overtime.",
+        "trigger": 0,
+        "choices": [ "!!!" ]
+    },
+    {
+        "speaker": "DR. ZERO",
+        "dialogueText": "Did I forget to mention that earlier? Don’t worry, we will compensate you well. See you soon #115.",
+        "trigger": 0,
+        "choices": []
     }
 ]

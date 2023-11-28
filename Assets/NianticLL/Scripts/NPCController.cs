@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class NPCController : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class NPCController : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if(hit.transform == transform)
+                if(!EventSystem.current.IsPointerOverGameObject() && hit.transform == transform)
                 {
                     dialogueUI.GetComponent<DialogueManager>().TextInit(dialogueFileName);
                     dialogueUI.GetComponent<DialogueManager>().ReplaceUI(dialogueSprite);
