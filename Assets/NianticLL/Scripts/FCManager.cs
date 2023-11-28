@@ -16,10 +16,11 @@ public class FCManager : MonoBehaviour
     public GameObject SignOfUnknown;
     public GameObject ReviewContainer;
     public GameObject ResultsPage;
-    public GameObject Total;
-    public GameObject Learned;
+    // public GameObject Total;
+    // public GameObject Learned;
     public GameObject BackButton;
-    public GameObject Review;
+    // public GameObject Review;
+    public List<Transform> ScoreBoxes;
     private bool isShowingBack = false;
 
     // FC Instructions
@@ -62,11 +63,9 @@ public class FCManager : MonoBehaviour
     {
 
         vacabDisplayManager = FindObjectOfType<VocabDisplayManager>();
-        totalNum = Total.GetComponent<TextMeshProUGUI>();
-        reviewNum = Review.GetComponent<TextMeshProUGUI>();
-        learnedNum = Learned.GetComponent<TextMeshProUGUI>();
-        
-
+        totalNum = ScoreBoxes[0].Find("Total").GetComponent<TextMeshProUGUI>();
+        learnedNum = ScoreBoxes[1].Find("Learned").GetComponent<TextMeshProUGUI>();
+        reviewNum = ScoreBoxes[2].Find("Review").GetComponent<TextMeshProUGUI>();
 
     }
 
@@ -79,6 +78,9 @@ public class FCManager : MonoBehaviour
 
         NPCName = splitStrings[0];
         categoryName = splitStrings.Length > 1 ? splitStrings[1] : "";
+
+        frontSide.GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][1];
+        backSide.GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][1];
 
         //Debug.Log("NPCName: " + NPCName);
         //Debug.Log("categoryName: " + categoryName);
@@ -137,7 +139,6 @@ public class FCManager : MonoBehaviour
     {
         if (isShowingBack)
         {
-
             frontSide.transform.localRotation = frontSide.transform.localRotation * Quaternion.Euler(0, 180, 0);
             backSide.transform.localRotation = backSide.transform.localRotation * Quaternion.Euler(0, 180, 0);
         }
@@ -152,7 +153,6 @@ public class FCManager : MonoBehaviour
         isShowingBack = false;
         if (word != null)
         {
-            
             TextMeshProUGUI translationText = frontSide.transform.Find("translation").GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI wordText =  backSide.transform.Find("word").GetComponent<TextMeshProUGUI>();
             wordText.text = word.Original;
@@ -242,7 +242,6 @@ public class FCManager : MonoBehaviour
     {
         if (Enable_TouchDetection)
         {
-
         
          #if UNITY_EDITOR
             // Simulate touch with mouse input in the Unity Editor
@@ -382,6 +381,14 @@ public class FCManager : MonoBehaviour
                 WordsLearned = WordsTotal - WordsReview;
 
                 ResultsPage.SetActive(true);
+
+                // Set results page UI color
+                foreach (Transform box in ScoreBoxes) {
+                    box.Find("Title").transform.Find("Bar").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][1];
+                }
+                ResultsPage.transform.Find("Header").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][0];
+                ResultsPage.transform.Find("Header").transform.Find("HeadInner").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][1];
+
                 frontSide.SetActive(false);
                 backSide.SetActive(false);
                 SignOfKnown.SetActive(false);
@@ -434,13 +441,20 @@ public class FCManager : MonoBehaviour
         Quaternion startRotationBack = backSide.transform.localRotation; 
         Quaternion endRotationBack = startRotationBack*Quaternion.Euler(0, 180, 0); // Rotate 180 degrees around the y-axis
 
-
-
-
         while (time < duration)
         {
             frontSide.transform.localRotation = Quaternion.Lerp(startRotationFront, endRotationFront, time / duration);
             backSide.transform.localRotation = Quaternion.Lerp(startRotationBack, endRotationBack, time / duration);
+            
+            // Toggle the side that is showing half way through the rotation
+            if (frontSide.transform.rotation.y <= -0.5 || frontSide.transform.rotation.y >= 0.5) {
+                frontSide.SetActive(false);
+                backSide.SetActive(true);
+            } else {
+                frontSide.SetActive(true);
+                backSide.SetActive(false);
+            }
+
             time += Time.deltaTime;
             yield return null;
         }
@@ -448,10 +462,7 @@ public class FCManager : MonoBehaviour
         frontSide.transform.localRotation = endRotationFront;
         backSide.transform.localRotation = endRotationBack;
 
-        // Toggle which side is showing
         isShowingBack = !isShowingBack;
-        frontSide.SetActive(!isShowingBack);
-        backSide.SetActive(isShowingBack);
         Enable_TouchDetection = true;
     }
 
