@@ -392,6 +392,10 @@ public class FCManager : MonoBehaviour
                 totalNum.text = WordsTotal.ToString();
                 reviewNum.text = WordsReview.ToString();
                 learnedNum.text = WordsLearned.ToString();
+                foreach (Transform child in ReviewContainer.transform)
+                {
+                    Destroy(child.gameObject);
+                }
                 vacabDisplayManager.DisplayWordsForCategory(NPCName, "Review", ReviewContainer.transform);
 
 
