@@ -6,6 +6,9 @@ public class VocabularySet : MonoBehaviour
 {
     public List<Category> categories = new List<Category>();
     public static VocabularySet Instance { get; private set; }
+
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)

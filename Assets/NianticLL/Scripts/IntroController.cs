@@ -12,7 +12,7 @@ public class IntroController : MonoBehaviour
 
     public void SetName()
     {
-        nameInputPanel.SetActive(true);
+        nameInputPanel.SetActive(false);
         PlayerPrefs.SetString("name", nameInput.text);
         dm.DialogueNext();
     }
