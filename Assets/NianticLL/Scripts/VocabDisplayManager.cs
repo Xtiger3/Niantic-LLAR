@@ -39,6 +39,7 @@ public class VocabDisplayManager : MonoBehaviour
         }
         Camera.main.backgroundColor = GameData.Inst.NPCColor[NPCName][2];
 
+        // Create NPC specific category cards
         foreach (string category in NPCs[NPCName]) {
             GameObject newCategoryCard = Instantiate(categoryCardPrefab);
             newCategoryCard.name = NPCName + "," + category;
@@ -58,6 +59,8 @@ public class VocabDisplayManager : MonoBehaviour
                 header.Find("Lock").gameObject.SetActive(true);
             } else {
                 newCategoryCard.transform.Find("Vocabs").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][0];
+
+                // Add expandable word cards
                 DisplayWordsForCategory(NPCName, category, newCategoryCard.transform.Find("Vocabs"));
             }
             
@@ -70,10 +73,9 @@ public class VocabDisplayManager : MonoBehaviour
     {
         bool dontneedButton = false;
         Transform button = container;
-        Debug.Log(container.name);
+        // Debug.Log(container.name);
         if (container.name == "Container")
         {
-            
             dontneedButton = true;
         }
         VocabularySet.Category selectedCategory = vocabularySet.GetCategoryByName(categoryName);
@@ -83,9 +85,11 @@ public class VocabDisplayManager : MonoBehaviour
         if (!dontneedButton)
         {
 
-             button = container.GetChild(0);
+            button = container.GetChild(0);
 
         }
+
+        // Create category specific word cards
         foreach (VocabularySet.Word word in selectedCategory.Words)
         {
             // Instantiate the wordcard prefab
@@ -100,6 +104,7 @@ public class VocabDisplayManager : MonoBehaviour
 
             newWordCard.transform.SetParent(container, false);
         }
+
         if (!dontneedButton)
         {
             button.Find("Image").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][3];

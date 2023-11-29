@@ -24,23 +24,7 @@ public class CoverageManager : MonoBehaviour
     [SerializeField]
     private GameObject obj;
 
-    // This will be populated by selecting an area target by name in the UI dropdown
-    public string SelectedPayload;
-
-    private Dictionary<string, string> LocationToPayload = new();
-
     private Dictionary<string, GameObject> currWayspots = new();
-
-    void Start()
-    {
-        // test
-
-        // MapsLatLng mapLatLng = new MapsLatLng(42.275059, -83.737419);
-        // Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
-        // GameObject wayspot = Instantiate(obj, mapPos, Quaternion.identity);
-
-        // CoverageClient.TryGetCoverage(OnTryGetCoverage);
-    }
 
     void Update()
     {
@@ -49,12 +33,6 @@ public class CoverageManager : MonoBehaviour
 
     private void OnTryGetCoverage(AreaTargetsResult args)
     {
-        // Clear any previous data
-
-        // Debug.Log("debug query: " + args.QueryLocation);
-        LocationToPayload.Clear();
-        SelectedPayload = null;
-
         var areaTargets = args.AreaTargets;
 
         // Sort the area targets by proximity to the user
@@ -62,13 +40,12 @@ public class CoverageManager : MonoBehaviour
             a.Area.Centroid.Distance(args.QueryLocation).CompareTo(
                 b.Area.Centroid.Distance(args.QueryLocation)));
 
-        // Only populate the dropdown with the closest 5 locations.
-
         List<string> displayed = new();
 
+        // Only populate the dropdown with the closest 5 locations.
         for (var i = 0; i < Math.Min(areaTargets.Count, 5); i++)
         {
-            
+            // Convert LatLng to game map position
             MapsLatLng mapLatLng = new MapsLatLng(areaTargets[i].Target.Center.Latitude, areaTargets[i].Target.Center.Longitude);
             Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
             
