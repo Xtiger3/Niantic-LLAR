@@ -9,6 +9,11 @@ public class NPCController : MonoBehaviour
     public Sprite dialogueSprite;
     public string dialogueFileName;
 
+    private void Start()
+    {
+        GetComponent<Animator>().SetInteger("anim_id", 0);
+    }
+
     private void Update()
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -21,6 +26,7 @@ public class NPCController : MonoBehaviour
                 {
                     dialogueUI.GetComponent<DialogueManager>().TextInit(dialogueFileName);
                     dialogueUI.GetComponent<DialogueManager>().ReplaceUI(dialogueSprite);
+                    dialogueUI.GetComponent<DialogueManager>().anim = GetComponent<Animator>();
                 }
             }
         }

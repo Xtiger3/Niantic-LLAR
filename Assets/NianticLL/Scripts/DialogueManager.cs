@@ -12,11 +12,13 @@ public class Dialogue
     public string dialogueText;
     public int trigger;
     public string[] choices;
+    public int anim;
 }
 
 public class DialogueManager : MonoBehaviour
 {
     public string dialogueFileName;
+    public Animator anim;
 
     public float textSpeed;
     public float pauseLength;
@@ -65,10 +67,13 @@ public class DialogueManager : MonoBehaviour
 
     public void DialogueNext()
     {
+        anim.SetInteger("anim_id", dialogues[index].anim);
+        //anim.SetInteger("anim_id", 0);
         if (!completeText)
         {
             StopAllCoroutines();
-            dialogueText.text = dialogues[index].dialogueText;
+            string dialogueText_ = dialogues[index].dialogueText.Replace("_", PlayerPrefs.GetString("name"));
+            dialogueText.text = dialogueText_;
             completeText = true;
         }
         else
