@@ -4450,6 +4450,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoverageClient: {fileID: 499748661}
+  _lightshipMapView: {fileID: 1179022941}
+  obj: {fileID: 6817197032551961046, guid: dcb51b50ea4d14f30bdff76a6bf3e783, type: 3}
   SelectedPayload: 0
 --- !u!1 &1185788685
 GameObject:
@@ -5105,11 +5107,11 @@ PrefabInstance:
       objectReference: {fileID: 1106550023}
     - target: {fileID: 4679712108560714345, guid: 652c0f1d2f3184a959f719dbc90057a4, type: 3}
       propertyPath: _defaultLocation._latitude
-      value: 42.275059
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4679712108560714345, guid: 652c0f1d2f3184a959f719dbc90057a4, type: 3}
       propertyPath: _defaultLocation._longitude
-      value: -83.737419
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4679712108560714347, guid: 652c0f1d2f3184a959f719dbc90057a4, type: 3}
       propertyPath: m_RootOrder

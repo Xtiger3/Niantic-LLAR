@@ -50,10 +50,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/NianticLL/Scenes/TestMap.unity
     guid: bb375ff5fdac249c495fd026ea23f668
-  - enabled: 1
+  - enabled: 0
     path: Assets/NianticLL/Scenes/HomeScreen.unity
     guid: 9b0b5e4f0295f479fb78841df42fda74
-  - enabled: 1
+  - enabled: 0
     path: Assets/NianticLL/Scenes/DictionaryUI.unity
     guid: 040b289855b12ae40a839e77166d020c
   - enabled: 1

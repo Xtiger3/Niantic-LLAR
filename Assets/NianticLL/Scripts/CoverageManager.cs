@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 using Niantic.Lightship.AR;
 using Niantic.Lightship.AR.VpsCoverage;
+using Niantic.Lightship.Maps;
 
 using UnityEngine;
 using UnityEngine.UI;
+
+using MapsLatLng = Niantic.Lightship.Maps.Core.Coordinates.LatLng;
 
 public class CoverageManager : MonoBehaviour
 {
@@ -14,28 +18,44 @@ public class CoverageManager : MonoBehaviour
     [SerializeField]
     public CoverageClientManager CoverageClient;
 
+    [SerializeField]
+    private LightshipMapView _lightshipMapView;
+
+    [SerializeField]
+    private GameObject obj;
+
     // This will be populated by selecting an area target by name in the UI dropdown
     public string SelectedPayload;
 
     private Dictionary<string, string> LocationToPayload = new();
 
+    private Dictionary<string, GameObject> currWayspots = new();
+
     void Start()
     {
-        CoverageClient.TryGetCoverage(OnTryGetCoverage);
+        // test
+
+        // MapsLatLng mapLatLng = new MapsLatLng(42.275059, -83.737419);
+        // Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
+        // GameObject wayspot = Instantiate(obj, mapPos, Quaternion.identity);
+
+        // CoverageClient.TryGetCoverage(OnTryGetCoverage);
     }
 
+    void Update()
+    {
+        UpdateMapViewPosition();
+    }
 
     private void OnTryGetCoverage(AreaTargetsResult args)
     {
         // Clear any previous data
+
+        // Debug.Log("debug query: " + args.QueryLocation);
         LocationToPayload.Clear();
         SelectedPayload = null;
 
         var areaTargets = args.AreaTargets;
-        foreach (var x in areaTargets)
-        {
-            Debug.Log(x.ToString());
-        }
 
         // Sort the area targets by proximity to the user
         areaTargets.Sort((a, b) =>
@@ -43,14 +63,63 @@ public class CoverageManager : MonoBehaviour
                 b.Area.Centroid.Distance(args.QueryLocation)));
 
         // Only populate the dropdown with the closest 5 locations.
-        // For a full sample with UI and image hints, see the VPSColocalization sample
-        for (var i = 0; i < 5; i++)
+
+        List<string> displayed = new();
+
+        for (var i = 0; i < Math.Min(areaTargets.Count, 5); i++)
         {
-            Debug.Log("hello");
-            LocationToPayload[areaTargets[i].Target.Name] = areaTargets[i].Target.DefaultAnchor;
-            Debug.Log(areaTargets[i].Target.Name);
+            
+            MapsLatLng mapLatLng = new MapsLatLng(areaTargets[i].Target.Center.Latitude, areaTargets[i].Target.Center.Longitude);
+            Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
+            
+            string wayspotName = areaTargets[i].Target.Name;
+            displayed.Add(wayspotName);
+
+            if (currWayspots.ContainsKey(wayspotName))
+            {
+                // Update the wayspot position
+                currWayspots[wayspotName].transform.position = mapPos;
+                // Debug.Log("updated gameobj: " + wayspotName);
+            }
+            else
+            {
+                // Draw the new wayspot
+                GameObject wayspot = Instantiate(obj, mapPos, Quaternion.identity);
+                currWayspots[areaTargets[i].Target.Name] = wayspot;
+                // Debug.Log("added gameobj: " + wayspotName);
+            }
         }
 
-        //Debug.Log(AddOptions(LocationToPayload.Keys.ToList());
+        foreach(var item in currWayspots)
+        {
+            if (displayed.Contains(item.Key))
+            {
+                // 
+            }
+            else
+            {
+                // Delete far away wayspots
+                Destroy(item.Value);
+                currWayspots.Remove(item.Key);
+                // Debug.Log("destroyed gameobj: " + item.Value);
+            }
+        }
+    }
+
+    private float _lastMapViewUpdateTime;
+
+    private void UpdateMapViewPosition()
+    {
+        // Only update the map tile view periodically so as not to spam tile fetches
+        if (Time.time < _lastMapViewUpdateTime + 1.0f)
+        {
+            return;
+        }
+
+        _lastMapViewUpdateTime = Time.time;
+
+        // Update the map's view based on where our player is
+        // _lightshipMapView.SetMapCenter(transform.position);
+        CoverageClient.TryGetCoverage(OnTryGetCoverage);
     }
 }
