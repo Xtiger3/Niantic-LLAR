@@ -656,6 +656,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Maki
       objectReference: {fileID: 0}
+    - target: {fileID: 2090667036054343034, guid: d7d77fe5b90c44d46ac9f6887ee250aa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fd8ebb10ccc8e456789221eb62c28d8c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7d77fe5b90c44d46ac9f6887ee250aa, type: 3}
 --- !u!1 &2100929819
