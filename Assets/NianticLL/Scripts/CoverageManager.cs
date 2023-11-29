@@ -1,84 +1,56 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+
 using Niantic.Lightship.AR;
 using Niantic.Lightship.AR.VpsCoverage;
-using Niantic.Lightship.Maps;
-using Niantic.Lightship.Maps.Core.Coordinates;
-using Niantic.Lightship.Maps.MapLayers.Components;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 
- using ArdkLatLng = Niantic.Lightship.AR.VpsCoverage.LatLng;
-using MapsLatLng = Niantic.Lightship.Maps.Core.Coordinates.LatLng;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class CoverageManager : MonoBehaviour
 {
-
+    // References to components
     [SerializeField]
-    private LightshipMapView _mapView;
+    public CoverageClientManager CoverageClient;
 
-    private CoverageClient _coverageClient;
+    // This will be populated by selecting an area target by name in the UI dropdown
+    public string SelectedPayload;
 
-    [SerializeField]
-    private int _queryRadius;
+    private Dictionary<string, string> LocationToPayload = new();
 
-    [SerializeField]
-    private LayerLineRenderer _areaBorder;
-
-    // Start is called before the first frame update
     void Start()
     {
-        //_coverageClient = CoverageClientFactory.Create(RuntimeEnvironment.LiveDevice);
-        RequestAreasAroundMapCenter();
+        CoverageClient.TryGetCoverage(OnTryGetCoverage);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
-
-    public void RequestAreasAroundMapCenter()
+    private void OnTryGetCoverage(AreaTargetsResult args)
     {
-         var mapCenter = ConvertArdkLatLng(_mapView.MapCenter);
-         //_coverageClient.RequestCoverageAreas(_mapView.MapCenter, _queryRadius, OnAreasResult );
-    }
+        // Clear any previous data
+        LocationToPayload.Clear();
+        SelectedPayload = null;
 
-    public void OnAreasResult(CoverageAreasResult areaResult)
-    {
-        if (areaResult.Status != ResponseStatus.Success)
+        var areaTargets = args.AreaTargets;
+        foreach (var x in areaTargets)
         {
-            return;
+            Debug.Log(x.ToString());
         }
 
-        foreach (var area in areaResult.Areas)
+        // Sort the area targets by proximity to the user
+        areaTargets.Sort((a, b) =>
+            a.Area.Centroid.Distance(args.QueryLocation).CompareTo(
+                b.Area.Centroid.Distance(args.QueryLocation)));
+
+        // Only populate the dropdown with the closest 5 locations.
+        // For a full sample with UI and image hints, see the VPSColocalization sample
+        for (var i = 0; i < 5; i++)
         {
-            var areaID = area.LocalizationTargetIdentifiers[0];
-             _areaBorder.DrawLoop(ConvertMapsLatLng(area.Shape), areaID);
-            //Instantiate(GameObject,position,Quaternion.identity)
-        }
-    }
-
-    private ArdkLatLng ConvertArdkLatLng(MapsLatLng mapsLatLng)
-    {
-        return new ArdkLatLng(mapsLatLng.Latitude, mapsLatLng.Longitude);
-    }
-
-    private MapsLatLng ConvertMapsLatLng(ArdkLatLng ardkLatLng)
-    {
-        return new MapsLatLng(ardkLatLng.Latitude, ardkLatLng.Longitude);
-    }
-
-    private MapsLatLng[] ConvertMapsLatLng(ArdkLatLng[] ardkLatLng)
-    {
-        var results = new MapsLatLng[ardkLatLng.Length];
-        for (int i = 0; i < results.Length; i++)
-        {
-            results[i] = ConvertMapsLatLng(ardkLatLng[i]);
+            Debug.Log("hello");
+            LocationToPayload[areaTargets[i].Target.Name] = areaTargets[i].Target.DefaultAnchor;
+            Debug.Log(areaTargets[i].Target.Name);
         }
 
-        return results;
+        //Debug.Log(AddOptions(LocationToPayload.Keys.ToList());
     }
 }
