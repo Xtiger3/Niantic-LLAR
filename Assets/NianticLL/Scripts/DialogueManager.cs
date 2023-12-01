@@ -272,6 +272,7 @@ public class DialogueManager : MonoBehaviour
             {
                 choice2.SetActive(true);
                 choice1.GetComponentInChildren<TextMeshProUGUI>().text = dialogues[index].choices[1];
+                Debug.Log("true");
             }
             GetComponent<Button>().enabled = false;
         }
