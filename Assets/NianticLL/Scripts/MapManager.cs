@@ -8,6 +8,7 @@ public class MapManager : MonoBehaviour
     public static MapManager Inst;
     public string NPCName;
     public Vector3 NPCPos;
+    public GameObject NPC;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +16,7 @@ public class MapManager : MonoBehaviour
         if (Inst == null)
         {
             Inst = this;
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
         }
         else
         {
@@ -26,6 +27,6 @@ public class MapManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        NPCPos = NPC.transform.position;
     }
 }
