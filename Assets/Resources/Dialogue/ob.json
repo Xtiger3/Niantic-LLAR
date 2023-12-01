@@ -7,14 +7,14 @@
             "Um... is your hand okay?",
             "Is that a shark on your hand!?"
         ],
-        "anim": 2
+        "anim": 1
     },
     {
         "speaker": "OB",
-        "dialogueText": "Yeah it�s all good hehe. It�s a pet I just got. I found it all sad and lonely swimming in the middle of the ocean� Oops, I got off track!",
+        "dialogueText": "Yeah it�s all good hehe. It's a pet I just got. I found it all sad and lonely swimming in the middle of the ocean� Oops, I got off track!",
         "trigger": 0,
         "choices": [],
-        "anim": 3
+        "anim": 2
     },
     {
         "speaker": "OB",

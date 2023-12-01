@@ -13,6 +13,7 @@ public class Dialogue
     public int trigger;
     public string[] choices;
     public int anim;
+    public string[] dialoguePaths;
 }
 
 public class DialogueManager : MonoBehaviour
@@ -45,6 +46,8 @@ public class DialogueManager : MonoBehaviour
     public GameObject newContactAddedPanel;
 
     public GameObject tc;
+
+    public int ready = 0;
 
     private void Start()
     {
@@ -232,7 +235,16 @@ public class DialogueManager : MonoBehaviour
 
         if (index >= dialogues.Length)
         {
-            gameObject.SetActive(false);
+            if (dialogues[index-1].dialoguePaths.Length != 0)
+            {
+                //if(dialogues[index].dialoguePaths[0])
+                string dialoguePathText_ = dialogues[index].dialoguePaths[ready].Replace("_", PlayerPrefs.GetString("name"));
+                StartCoroutine(TextFlow(dialoguePathText_));
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
             return;
         }
 
@@ -248,6 +260,10 @@ public class DialogueManager : MonoBehaviour
     private void ToggleChoices(int index)
     {
         //choices
+        if (dialogues[index].dialoguePaths.Length != 0)
+        {
+            choice2.GetComponent<Button>().onClick.AddListener(() => SelectReady()); 
+        }
         if (dialogues[index].choices.Length != 0)
         {
             choice1.SetActive(true);
@@ -264,5 +280,11 @@ public class DialogueManager : MonoBehaviour
     public void ActivateDialogue()
     {
         transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+    public void SelectReady()
+    {
+        ready = 1;
+        choice2.GetComponent<Button>().onClick.RemoveListener(() => SelectReady());
     }
 }
