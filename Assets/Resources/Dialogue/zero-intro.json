@@ -1,30 +1,40 @@
 [
     {
-        "speaker": "???",
-        "dialogueText": "Hey there human! What can I call you?"
+        "speaker": "DR. ZERO",
+        "dialogueText": "Hey, nice to meet you again. How are you doing? Are you ready to get your knowledge tested?",
+        "trigger": 0,
+        "choices": [
+            "Yea",
+            "No"
+        ],
+        "anim": 0
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "Do you happen to know English?"
+        "dialogueText": "Nice! Let’s get started then. I’ll say the english word and then you should select the correct japanese word.",
+        "trigger": 0,
+        "choices": [],
+        "anim": 0
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "My name is Dr. Zero and I am from the [???] universe."
+        "dialogueText": "Fantastic job #115!  You’ve memorized them so fast. I’ve sent the new vocab set for you to learn! Keep it up!",
+        "trigger": 0,
+        "choices": [],
+        "anim": 0
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "My company and I have been traveling around Earth learning different languages. This is our last destination and we are here to learn English."
+        "dialogueText": "No worries, study a bit longer and come back to me when you are ready!",
+        "trigger": 0,
+        "choices": [],
+        "anim": 0
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "We would like to exchange languages. Which language would you like to learn? [Chinese] [English]"
-    },
-    {
-        "speaker": "DR. ZERO",
-        "dialogueText": "Okay! Let’s get started then!"
-    },
-    {
-        "speaker": "DR. ZERO",
-        "dialogueText": "These [zoom in to waypoint] are called waypoints."
+        "dialogueText": "It’s okay. Come back again when you are ready!",
+        "trigger": 0,
+        "choices": [],
+        "anim": 0
     }
 ]

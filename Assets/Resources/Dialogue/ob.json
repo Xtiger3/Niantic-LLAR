@@ -1,30 +1,26 @@
 [
     {
         "speaker": "OB",
-        "dialogueText": "Hi [player name]! I’ve heard from Dr. Zero that you are here to help us with our research! I’m an intern at [company name]."
-    },
-    {
-        "speaker": "You",
-        "dialogueText": "Um… Is your hand okay?"
-    },
-    {
-        "speaker": "OB",
-        "dialogueText": "Yeah it’s all good! It’s a pet i just got. I found it all sad and lonely… "
-    },
-    {
-        "speaker": "OB",
-        "dialogueText": "Can I have your [walkie talkie]?"
+        "dialogueText": "Hi _! I’m OB. I’m an intern for Dr. Zero. I’ve heard from him that you are here to help us with our research!",
+        "trigger": 0,
+        "choices": [
+            "Um... is your hand okay?",
+            "Is that a shark on your hand!?"
+        ],
+        "anim": 0
     },
     {
         "speaker": "OB",
-        "dialogueText": "[beep boop beep]"
+        "dialogueText": "Yeah it’s all good hehe. It’s a pet I just got. I found it all sad and lonely swimming in the middle of the ocean… Oops, I got off track!",
+        "trigger": 0,
+        "choices": [],
+        "anim": 0
     },
     {
         "speaker": "OB",
-        "dialogueText": "Okay! I’ve just added a [notecard/dictionary] app to your [walkie talkie]. I inputted 7 words for you to get started with."
-    },
-    {
-        "speaker": "OB",
-        "dialogueText": "Please come back when you have mastered the work!"
+        "dialogueText": "Can I have your [walkie talkie]? [beep boop beep] Okay! I’ve just added another category of words for you. Please come back when you have learned the vocabulary!",
+        "trigger": 3,
+        "choices": [],
+        "anim": 0
     }
 ]

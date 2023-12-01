@@ -42,6 +42,9 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject nameInputPanel;
     public GameObject pickLanguagePanel;
+    public GameObject newContactAddedPanel;
+
+    public GameObject tc;
 
     private void Start()
     {
@@ -127,6 +130,11 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TextFlow(string dialogue)
     {
+        if (dialogues[index].trigger == 1 || dialogues[index].trigger == 2)
+        {
+            GetComponent<Button>().enabled = false;
+        }
+
         string str = "" + dialogue[0];
 
         for (int i = 1; i < dialogue.Length; ++i)
@@ -154,6 +162,57 @@ public class DialogueManager : MonoBehaviour
             pickLanguagePanel.SetActive(true);
             GetComponent<Button>().enabled = false;
         }
+        if (dialogues[index].trigger == 3)
+        {
+            StartCoroutine(Flash());
+        }
+        if (dialogues[index].trigger == 4)
+        {
+            StartCoroutine(SpinTC());
+        }
+    }
+
+    IEnumerator SpinTC()
+    {
+        tc.SetActive(true);
+        float startRotation = tc.transform.eulerAngles.y;
+        float endRotation = startRotation + (360.0f);
+        float t = 0.0f;
+        while (t < 1.5f)
+        {
+            t += Time.deltaTime;
+            float yRotation = Mathf.Lerp(startRotation, endRotation, t / 1.5f) % 360.0f;
+            tc.transform.eulerAngles = new Vector3(tc.transform.eulerAngles.x, yRotation, tc.transform.eulerAngles.z);
+            yield return null;
+        }
+        yield return new WaitForSeconds(1.5f);
+        tc.SetActive(false);
+    }
+
+    IEnumerator Flash()
+    {
+        newContactAddedPanel.SetActive(true);
+        yield return Scale(newContactAddedPanel, 0f, 6f);
+        yield return new WaitForSeconds(.5f);
+        yield return Scale(newContactAddedPanel, 6f, 0f);
+        newContactAddedPanel.SetActive(false);
+    }
+    IEnumerator Scale(GameObject obj, float scale_begin, float scale_end)
+    {
+        float duration = .5f;
+        Vector3 originalScale = Vector3.one * scale_begin;
+        Vector3 targetScale = Vector3.one * scale_end;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            obj.transform.localScale = Vector3.Lerp(originalScale, targetScale, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        obj.transform.localScale = targetScale;
     }
 
     private void NextPage()
