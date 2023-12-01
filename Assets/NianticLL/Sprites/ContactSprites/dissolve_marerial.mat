@@ -52,10 +52,10 @@ Material:
     m_Ints: []
     m_Floats:
     - REVERSE_DIRECTION: 0
-    - _CutoffHeight: -0.2
+    - _CutoffHeight: 16
     - _GlowThickness: 0.1
     - _NoiseScale: 50
-    - _NoiseStrength: -2.3
+    - _NoiseStrength: 10.88
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
