@@ -24,19 +24,33 @@ public class CoverageManager : MonoBehaviour
     [SerializeField]
     private GameObject obj;
 
+    private float waypointYPos;
     private Dictionary<string, GameObject> currWayspots = new();
+
+    public static CoverageManager Inst;
+    public Vector3 NPCPos;
+    public GameObject NPC;
 
     private void Start()
     {
+        waypointYPos = obj.transform.position.y;
+
+
         MapsLatLng mapLatLng = new MapsLatLng(42.2814713, -83.7435344);
         Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
-        mapPos[1] = 1.05f;
+        mapPos[1] = waypointYPos;
         Instantiate(obj, mapPos, obj.transform.rotation);
+
+        if (Inst == null)
+        {
+            Inst = this;
+        }
 
     }
 
     void Update()
     {
+        NPCPos = NPC.transform.position;
         UpdateMapViewPosition();
     }
 
@@ -64,14 +78,16 @@ public class CoverageManager : MonoBehaviour
             if (currWayspots.ContainsKey(wayspotName))
             {
                 // Update the wayspot position
-                currWayspots[wayspotName].transform.position = mapPos;
+                //currWayspots[wayspotName].transform.position = mapPos;
                 // Debug.Log("updated gameobj: " + wayspotName);
+
+                //Debug.Log("xy mappos" + mapPos);
             }
             else
             {
                 // Draw the new wayspot
                 GameObject wayspot = Instantiate(obj, mapPos, obj.transform.rotation);
-                mapPos[1] = 1.05f;
+                mapPos[1] = 20f;
                 currWayspots[areaTargets[i].Target.Name] = wayspot;
                 // Debug.Log("added gameobj: " + wayspotName);
             }
