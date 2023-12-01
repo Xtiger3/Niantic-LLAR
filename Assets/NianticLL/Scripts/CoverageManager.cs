@@ -26,6 +26,15 @@ public class CoverageManager : MonoBehaviour
 
     private Dictionary<string, GameObject> currWayspots = new();
 
+    private void Start()
+    {
+        MapsLatLng mapLatLng = new MapsLatLng(42.2814713, -83.7435344);
+        Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
+        mapPos[1] = 1.05f;
+        Instantiate(obj, mapPos, obj.transform.rotation);
+
+    }
+
     void Update()
     {
         UpdateMapViewPosition();
@@ -61,7 +70,8 @@ public class CoverageManager : MonoBehaviour
             else
             {
                 // Draw the new wayspot
-                GameObject wayspot = Instantiate(obj, mapPos, Quaternion.identity);
+                GameObject wayspot = Instantiate(obj, mapPos, obj.transform.rotation);
+                mapPos[1] = 1.05f;
                 currWayspots[areaTargets[i].Target.Name] = wayspot;
                 // Debug.Log("added gameobj: " + wayspotName);
             }
@@ -73,7 +83,7 @@ public class CoverageManager : MonoBehaviour
             {
                 // 
             }
-            else
+            else if (areaTargets.Count > 0)
             {
                 // Delete far away wayspots
                 Destroy(item.Value);

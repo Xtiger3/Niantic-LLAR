@@ -85,13 +85,13 @@
     {
         "speaker": "DR. ZERO",
         "dialogueText": "Let’s get started then! Here’s our company's specially developed communication device the TC V21!",
-        "trigger": 0,
+        "trigger": 4,
         "choices": [],
         "anim": 0
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "This device will hold all of your work material and help you communicate with me and all of your other colleagues you’ll meet!",
+        "dialogueText": "This device will hold all of your work material and help you communicate with me and all of your other colleagues!",
         "trigger": 0,
         "choices": [],
         "anim": 0
@@ -106,7 +106,7 @@
     {
         "speaker": "DR. ZERO",
         "dialogueText": "Here I’ll add my information now into your contact book!",
-        "trigger": 0,
+        "trigger": 3,
         "choices": [],
         "anim": 0
     },
