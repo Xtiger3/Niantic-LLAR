@@ -1,24 +1,24 @@
 [
     {
         "speaker": "OB",
-        "dialogueText": "Hi _! I’m OB. I’m an intern for Dr. Zero. I’ve heard from him that you are here to help us with our research!",
+        "dialogueText": "Hi _! Iï¿½m OB. Iï¿½m an intern for Dr. Zero. Iï¿½ve heard from him that you are here to help us with our research!",
         "trigger": 0,
         "choices": [
             "Um... is your hand okay?",
             "Is that a shark on your hand!?"
         ],
-        "anim": 0
+        "anim": 1
     },
     {
         "speaker": "OB",
-        "dialogueText": "Yeah it’s all good hehe. It’s a pet I just got. I found it all sad and lonely swimming in the middle of the ocean… Oops, I got off track!",
+        "dialogueText": "Yeah itï¿½s all good hehe. It's a pet I just got. I found it all sad and lonely swimming in the middle of the oceanï¿½ Oops, I got off track!",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 2
     },
     {
         "speaker": "OB",
-        "dialogueText": "Can I have your [walkie talkie]? [beep boop beep] Okay! I’ve just added another category of words for you. Please come back when you have learned the vocabulary!",
+        "dialogueText": "Can I have your [walkie talkie]? [beep boop beep] Okay! Iï¿½ve just added another category of words for you. Please come back when you have learned the vocabulary!",
         "trigger": 3,
         "choices": [],
         "anim": 0

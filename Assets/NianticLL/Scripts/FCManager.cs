@@ -29,10 +29,13 @@ public class FCManager : MonoBehaviour
     public Color shineColor = Color.green;
     public float Instruction_duration = 2f;
 
-    // Swipe Detection Parameters
+    // Swipe Parameters
     private int screenWidth = Screen.width;
     private float maxSwipeTime = 0.5f; // Maximum time for a swipe
     private float minSwipeDistance = 200f; // Minimum distance for a swipe
+    private float rotationSensitivity = 0.0001f;
+    private float fleetSpeed = 200f; // Adjust the speed of fleeting
+
 
     // Vocab set parameters
     public VocabularySet vocabularySet;
@@ -137,11 +140,17 @@ public class FCManager : MonoBehaviour
 
     private void ResetFCrotation()
     {
-        if (isShowingBack)
-        {
-            frontSide.transform.localRotation = frontSide.transform.localRotation * Quaternion.Euler(0, 180, 0);
-            backSide.transform.localRotation = backSide.transform.localRotation * Quaternion.Euler(0, 180, 0);
-        }
+        frontSide.transform.rotation = Quaternion.Euler(0, 0, 0);
+        backSide.transform.rotation = Quaternion.Euler(0, -180, 0);
+        //if (isShowingBack)
+        //{
+        //    frontSide.transform.localRotation = frontSide.transform.localRotation * Quaternion.Euler(0, 180, 0);
+        //    backSide.transform.localRotation = backSide.transform.localRotation * Quaternion.Euler(0, 180, 0);
+        //}
+        //else
+        //{
+
+        //}
     }
 
 
@@ -240,10 +249,13 @@ public class FCManager : MonoBehaviour
     }
     void Update()
     {
+        
         if (Enable_TouchDetection)
         {
-        
-         #if UNITY_EDITOR
+            //Vector3 worldDirectiontest = new Vector3(0, 1, 0);
+            //frontSide.transform.position += worldDirectiontest * fleetSpeed * Time.deltaTime;
+            //Debug.Log("url");
+#if UNITY_EDITOR
             // Simulate touch with mouse input in the Unity Editor
             if (Input.GetMouseButtonDown(0)) // Equivalent to TouchPhase.Began
             {
@@ -265,7 +277,7 @@ public class FCManager : MonoBehaviour
                 if (isDragging)
                 {
                     endTouchPosition = Input.mousePosition;
-                    ResetFCPosition();
+                    //ResetFCPosition();
                     DetectTouchAction();
                     isDragging = false;
                 }
@@ -297,7 +309,7 @@ public class FCManager : MonoBehaviour
                         if (isDragging)
                         {
                             endTouchPosition = touch.position;
-                            ResetFCPosition();
+                            
                             DetectTouchAction();
                             isDragging = false;
                         }
@@ -310,16 +322,34 @@ public class FCManager : MonoBehaviour
 
     private void MoveCardWithFinger()
     {
-        //// Assuming currentTouchPosition is in screen coordinates
-        //Vector3 screenPoint = new Vector3(currentTouchPosition.x, currentTouchPosition.y, 10.0f); // Adjust the z value as needed
-        //Vector3 worldPoint = Camera.main.ScreenToWorldPoint(screenPoint);
+        // Convert touch position to world position
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(currentTouchPosition.x, currentTouchPosition.y, 10.0f));
 
-        // Set new positions
-        Vector3 newPositionFront = new Vector3((currentTouchPosition.x - screenWidth / 2)*2, frontSide.transform.position.y, 0);
-        Vector3 newPositionBack = new Vector3((currentTouchPosition.x - screenWidth / 2)*2, backSide.transform.position.y, 0);
-        
-        frontSide.transform.localPosition = newPositionFront;
-        backSide.transform.localPosition = newPositionBack;
+        // Update positions
+        Vector3 newPositionFront = new Vector3(worldPosition.x, worldPosition.y, frontSide.transform.position.z);
+        Vector3 newPositionBack = new Vector3(worldPosition.x, worldPosition.y, backSide.transform.position.z);
+
+        frontSide.transform.position = newPositionFront;
+        backSide.transform.position = newPositionBack;
+
+        float rotationAmount = (startTouchPosition.x - currentTouchPosition.x) * rotationSensitivity;
+        Quaternion newRotation = Quaternion.Euler(0, 0, rotationAmount);
+
+        frontSide.transform.rotation *= newRotation;
+        backSide.transform.rotation *= newRotation;
+        //// Set new positions
+        //Vector3 newPositionFront = new Vector3((currentTouchPosition.x - screenWidth / 2)*2, frontSide.transform.position.y, 0);
+        //Vector3 newPositionBack = new Vector3((currentTouchPosition.x - screenWidth / 2)*2, backSide.transform.position.y, 0);
+
+        //frontSide.transform.localPosition = newPositionFront;
+        //backSide.transform.localPosition = newPositionBack;
+    }
+
+    private void ResetFCTransform()
+    {
+        frontSide.transform.localPosition = new Vector3(0, 0, 0);    
+        backSide.transform.localPosition = new Vector3(0, 0, 0);
+        ResetFCrotation();
     }
 
     private void ResetFCPosition()
@@ -335,11 +365,16 @@ public class FCManager : MonoBehaviour
 
         if (touchDuration < maxSwipeTime && swipeDistance > minSwipeDistance)
         {
-            ProcessSwipe();
+            StartCoroutine(FleetingOut());
         }
         else if (swipeDistance < minSwipeDistance)
         {
             FlipCard();
+        }
+        else
+        {
+            Debug.Log("ResetTrans");
+            ResetFCTransform();
         }
     }
 
@@ -349,8 +384,37 @@ public class FCManager : MonoBehaviour
         
     }
 
+    IEnumerator FleetingOut()
+    {
+        Vector2 direction = endTouchPosition - startTouchPosition;
+        direction = direction.normalized;
+
+        
+        // Convert screen direction to world direction
+        Vector3 worldDirection = new Vector3(direction.x, direction.y, 0);
+        //worldDirection = Camera.main.ScreenToWorldPoint(worldDirection) - Camera.main.ScreenToWorldPoint(Vector3.zero);
+        //worldDirection.z = 0; // Ensure z-axis is not affected
+
+        while (IsCardOnScreen())
+        {
+            frontSide.transform.position += worldDirection * fleetSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        ProcessSwipe();
+    }
+
+    bool IsCardOnScreen()
+    {
+        Vector3 screenPoint = Camera.main.WorldToViewportPoint(frontSide.transform.position);
+        //Debug.Log("screenPoint" + screenPoint);
+        // Check if the card is still within the screen bounds
+        return screenPoint.x > -0.5 && screenPoint.x < 1.5 && screenPoint.y > -0.5 && screenPoint.y < 1.5;
+    }
+
     private void ProcessSwipe()
     {
+        ResetFCTransform();
         bool isSwipeRight = endTouchPosition.x > startTouchPosition.x;
         if (WordsIndex < WordsTotal)
         {
@@ -425,6 +489,7 @@ public class FCManager : MonoBehaviour
 
     private void FlipCard()
     {
+        ResetFCPosition();
         StartCoroutine(FlipCardRoutine(0.4f)); 
     }
 

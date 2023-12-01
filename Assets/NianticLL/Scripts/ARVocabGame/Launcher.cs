@@ -12,7 +12,7 @@ public class Launcher : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
 #else
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 #endif
         {
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);

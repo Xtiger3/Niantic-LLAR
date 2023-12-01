@@ -1,0 +1,30 @@
+[
+    {
+        "speaker": "MAKI",
+        "dialogueText": "Hey human, you must be researcher #115.",
+        "trigger": 0,
+        "choices": [],
+        "anim": 0
+    },
+    {
+        "speaker": "MAKI",
+        "dialogueText": "Hmmm. Zero is right, Earthlings are truly interesting creatures. You seem to have learned a lot in this short period of time already.",
+        "trigger": 0,
+        "choices": [],
+        "anim": 0
+    },
+    {
+        "speaker": "MAKI",
+        "dialogueText": "I’m researcher #008 but you can call me Maki. I’ll add another category of word to your [walkie talkie] for you.",
+        "trigger": 0,
+        "choices": [],
+        "anim": 0
+    },
+    {
+        "speaker": "MAKI",
+        "dialogueText": "I’m researcher #008 but you can call me Maki. I’ll add another category of word to your [walkie talkie] for you.",
+        "trigger": 0,
+        "choices": [],
+        "anim": 0
+    }
+]
