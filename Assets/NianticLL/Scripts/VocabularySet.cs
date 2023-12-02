@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VocabularySet : MonoBehaviour
 {
@@ -24,9 +26,13 @@ public class VocabularySet : MonoBehaviour
 
     public Dictionary<string, List<Color>> NPCColor = new Dictionary<string, List<Color>>();
 
-    public List<GameObject> NPCToLoadPrefab; // Should be in the order of
+    public Dictionary<string, int> ongoingCategory = new Dictionary<string, int>();
 
-    public Dictionary<string, Category> ongoingCategory = new Dictionary<string, Category>();
+    public Dictionary<string, List<string>> NPCs =
+          new Dictionary<string, List<string>>(){
+                                {"Maki", new List<string> {"NUMBERS 1-10", "DAYS", "TIME"}},
+                                {"Zero", new List<string> {"GREETINGS", "RELATIONSHIPS", "TRANSPORTATIONS"}},
+                                {"OB", new List<string> {"ANIMALS", "???", "???"}}};
 
     private void Awake()
     {
@@ -116,6 +122,34 @@ public class VocabularySet : MonoBehaviour
         categories.Add(reviewCategory);
     }
 
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void AddToOngoingCategory(string name)
+    {
+        //ongoingCategory.Add();
+        int index = 0;
+        if (!ongoingCategory.ContainsKey(name))
+        {
+            ongoingCategory.Add(name, 0);
+        }
+        else
+        {
+            index = ongoingCategory[name];
+            if (index + 1 >= NPCs[name].Count)
+                return;
+            ongoingCategory[name] = index + 1;
+        }
+        GetCategoryByName(NPCs[name][index]).Unlock();
+    }
+    public Category GetOngoingCategory(string name)
+    {
+        int index = ongoingCategory[name];
+        return GetCategoryByName(NPCs[name][index]);
+    }
+
     public Category GetCategoryByName(string categoryName)
     {
         return categories.Find(cat => cat.Name == categoryName);
@@ -143,7 +177,7 @@ public class VocabularySet : MonoBehaviour
         public Category(string name)
         {
             Name = name;
-            Locked = false;
+            Locked = true;
             Completed = false;
             Words = new List<Word>();
         }

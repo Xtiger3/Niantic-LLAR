@@ -22,7 +22,8 @@ public class IntroController : MonoBehaviour
     {
         if (dm.cooldown)
         {
-            SceneManager.LoadScene("CustomMap");
+            VocabularySet.Instance.AddToOngoingCategory("Zero");
+            VocabularySet.Instance.LoadScene("CustomMap");
         }
     }
 

@@ -197,11 +197,11 @@ public class DialogueManager : MonoBehaviour
         }
         if (dialogues[ind].trigger == 3)
         {
-            StartCoroutine(Flash());
+            yield return Flash();
         }
         if (dialogues[ind].trigger == 4)
         {
-            StartCoroutine(SpinTC());
+            yield return SpinTC();
         }
     }
 

@@ -26,14 +26,11 @@ public class VocabDisplayManager : MonoBehaviour
 
     private Color mainBGColor;
 
-    private Dictionary<string, List<string>> NPCs =  
-              new Dictionary<string, List<string>>(){
-                                {"Maki", new List<string> {"NUMBERS 1-10", "DAYS", "TIME"}},
-                                {"Zero", new List<string> {"GREETINGS", "RELATIONSHIPS", "TRANSPORTATIONS"}},
-                                {"OB", new List<string> {"ANIMALS", "???", "???"}}};
+    private Dictionary<string, List<string>> NPCs;
     private void Start()
     {
         mainBGColor = Camera.main.backgroundColor;
+        NPCs = VocabularySet.Instance.NPCs;
     }
 
     public void DisplayCategoriesForNPC(string NPCName)
