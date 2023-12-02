@@ -17,7 +17,7 @@ public class MessagingController : MonoBehaviour
 
     public float duration = 0.5f;
 
-    private List<string> playerTexts = new List<string> { "Thank you!", "Yes boss.", "Nice to meet you too!", "No you" };
+    private List<string> playerTexts = new List<string> { "Thank you!", "Yes boss.", "Nice to meet you too!", "Thanks!" };
 
     private bool disableTouch = false;
 
@@ -50,7 +50,7 @@ public class MessagingController : MonoBehaviour
             StartCoroutine(WelcomeMessages());
             MessageData.Inst.displayed = true;
         }
-        else if (MessageData.Inst.progression == 1 && !MessageData.Inst.replied)
+        else if (MessageData.Inst.progression == 0 && !MessageData.Inst.replied)
         {
             updatePlayerOption();
         }
@@ -60,17 +60,30 @@ public class MessagingController : MonoBehaviour
             StartCoroutine(WelcomeMessagesPart2());
             MessageData.Inst.displayed = true;
         }
+        else if (MessageData.Inst.progression == 1 && !MessageData.Inst.replied)
+        {
+            updatePlayerOption();
+        }
         else if (MessageData.Inst.progression == 2 && !MessageData.Inst.displayed)
         {
             disableTouch = true;
             StartCoroutine(OBEncounter());
             MessageData.Inst.displayed = true;
         }
-        else if (MessageData.Inst.progression == 1 && !MessageData.Inst.replied)
+        else if (MessageData.Inst.progression == 2 && !MessageData.Inst.replied)
         {
             updatePlayerOption();
         }
-
+        else if (MessageData.Inst.progression == 3 && !MessageData.Inst.displayed)
+        {
+            disableTouch = true;
+            StartCoroutine(FirstCompletion());
+            MessageData.Inst.displayed = true;
+        }
+        else if (MessageData.Inst.progression == 3 && !MessageData.Inst.replied)
+        {
+            updatePlayerOption();
+        }
 
         // 
         if (MessageData.Inst.replied)
@@ -162,14 +175,25 @@ public class MessagingController : MonoBehaviour
     {
         yield return SendFromMessage("Boss", "Go walk around to meet #114 and #008! They have vocabulary sets ready for you.");
         yield return SendFromMessage("Boss", "You might also find some Bins (my assistants) scattered around the map. They are hungry for knowledge so make sure to feed them if you bump into them!");
+        MessageData.Inst.replied = false;
         disableTouch = false;
         //MessageData.Inst.progression++;
     }
 
     IEnumerator OBEncounter()
     {
-        yield return SendFromMessage("#114", "Go walk around to meet #114 and #008! They have vocabulary sets ready for you.");
-        yield return SendFromMessage("Boss", "You might also find some Bins (my assistants) scattered around the map. They are hungry for knowledge so make sure to feed them if you bump into them!");
+        yield return SendFromMessage("#114", "It was nice to meet you in person >D<");
+        yield return SendFromMessage("#114", "Come find me whenever you are ready to be quizzed ^ - ^");
+        MessageData.Inst.replied = false;
+        disableTouch = false;
+        //MessageData.Inst.progression++;
+    }
+
+    IEnumerator FirstCompletion()
+    {
+        yield return SendFromMessage("Boss", "Congratulations on completing your first vocab set!");
+        yield return SendFromMessage("#114", "Wow you are fast ºOº");
+        MessageData.Inst.replied = false;
         disableTouch = false;
         //MessageData.Inst.progression++;
     }
@@ -179,7 +203,7 @@ public class MessagingController : MonoBehaviour
     {
         //playerButtonText.text = playerTexts[MessageData.Inst.progression - 1];
         playerButton.SetActive(true);
-        playerButton.transform.Find("UserText").transform.GetComponent<TextMeshProUGUI>().text = playerTexts[MessageData.Inst.progression - 1];
+        playerButton.transform.Find("UserText").transform.GetComponent<TextMeshProUGUI>().text = playerTexts[MessageData.Inst.progression];
     }
 
     public void reply()
@@ -187,7 +211,7 @@ public class MessagingController : MonoBehaviour
         disableTouch = true;
         if (!MessageData.Inst.replied)
         {
-            StartCoroutine(SendToMessage(playerTexts[MessageData.Inst.progression - 1]));
+            StartCoroutine(SendToMessage(playerTexts[MessageData.Inst.progression]));
         }
         disableTouch = false;
     }
