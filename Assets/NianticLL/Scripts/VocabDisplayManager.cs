@@ -14,7 +14,7 @@ public class VocabDisplayManager : MonoBehaviour
     public GameObject setScrollView;
     public GameObject vocabScrollView;
 
-    public VocabularySet vocabularySet;
+    //public VocabularySet vocabularySet;
 
     // UI references
     // public GameObject scrollView;
@@ -24,11 +24,17 @@ public class VocabDisplayManager : MonoBehaviour
     public GameObject CloseCat;
     public GameObject BackToCat;
 
+    private Color mainBGColor;
+
     private Dictionary<string, List<string>> NPCs =  
               new Dictionary<string, List<string>>(){
                                 {"Maki", new List<string> {"NUMBERS 1-10", "DAYS", "TIME"}},
                                 {"Zero", new List<string> {"GREETINGS", "RELATIONSHIPS", "TRANSPORTATIONS"}},
                                 {"OB", new List<string> {"ANIMALS", "???", "???"}}};
+    private void Start()
+    {
+        mainBGColor = Camera.main.backgroundColor;
+    }
 
     public void DisplayCategoriesForNPC(string NPCName)
     {
@@ -37,7 +43,7 @@ public class VocabDisplayManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        Camera.main.backgroundColor = GameData.Inst.NPCColor[NPCName][2];
+        Camera.main.backgroundColor = VocabularySet.Instance.NPCColor[NPCName][2];
 
         // Create NPC specific category cards
         foreach (string category in NPCs[NPCName]) {
@@ -45,20 +51,20 @@ public class VocabDisplayManager : MonoBehaviour
             newCategoryCard.name = NPCName + "," + category;
             Transform header = newCategoryCard.transform.Find("Header");
 
-            header.Find("Background").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][0];
-            header.Find("Foreground").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][1];
-            header.Find("Star").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][2];
+            header.Find("Background").GetComponent<Image>().color = VocabularySet.Instance.NPCColor[NPCName][0];
+            header.Find("Foreground").GetComponent<Image>().color = VocabularySet.Instance.NPCColor[NPCName][1];
+            header.Find("Star").GetComponent<Image>().color = VocabularySet.Instance.NPCColor[NPCName][2];
             header.Find("Title").GetComponent<TextMeshProUGUI>().text = category;
 
-            if (vocabularySet.GetCategoryByName(category).Completed) {
+            if (VocabularySet.Instance.GetCategoryByName(category).Completed) {
                 header.Find("Star").gameObject.SetActive(true);
                 header.Find("Title").gameObject.SetActive(true);
             }
             
-            if (vocabularySet.GetCategoryByName(category).Locked || vocabularySet.GetCategoryByName(category).Words.Count == 0) {
+            if (VocabularySet.Instance.GetCategoryByName(category).Locked || VocabularySet.Instance.GetCategoryByName(category).Words.Count == 0) {
                 header.Find("Lock").gameObject.SetActive(true);
             } else {
-                newCategoryCard.transform.Find("Vocabs").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][0];
+                newCategoryCard.transform.Find("Vocabs").GetComponent<Image>().color = VocabularySet.Instance.NPCColor[NPCName][0];
 
                 // Add expandable word cards
                 DisplayWordsForCategory(NPCName, category, newCategoryCard.transform.Find("Vocabs"));
@@ -78,7 +84,7 @@ public class VocabDisplayManager : MonoBehaviour
         {
             dontneedButton = true;
         }
-        VocabularySet.Category selectedCategory = vocabularySet.GetCategoryByName(categoryName);
+        VocabularySet.Category selectedCategory = VocabularySet.Instance.GetCategoryByName(categoryName);
 
         if (selectedCategory == null) return;
         
@@ -96,9 +102,9 @@ public class VocabDisplayManager : MonoBehaviour
             GameObject newWordCard = Instantiate(wordCardPrefab);
             
             // Find and set the word and translation texts
-            newWordCard.transform.Find("LeftSub").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][1];
-            newWordCard.transform.Find("RightSub").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][1];
-            newWordCard.transform.Find("Bar").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][1];
+            newWordCard.transform.Find("LeftSub").GetComponent<Image>().color = VocabularySet.Instance.NPCColor[NPCName][1];
+            newWordCard.transform.Find("RightSub").GetComponent<Image>().color = VocabularySet.Instance.NPCColor[NPCName][1];
+            newWordCard.transform.Find("Bar").GetComponent<Image>().color = VocabularySet.Instance.NPCColor[NPCName][1];
             newWordCard.transform.Find("English").GetComponent<TextMeshProUGUI>().text = word.Original;
             newWordCard.transform.Find("Japanese").GetComponent<TextMeshProUGUI>().text = word.Translation;
 
@@ -107,7 +113,7 @@ public class VocabDisplayManager : MonoBehaviour
 
         if (!dontneedButton)
         {
-            button.Find("Image").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][3];
+            button.Find("Image").GetComponent<Image>().color = VocabularySet.Instance.NPCColor[NPCName][3];
             button.SetAsLastSibling();
         }
     }
@@ -120,7 +126,7 @@ public class VocabDisplayManager : MonoBehaviour
         // OBCat.SetActive(true);
         setScrollView.SetActive(true);
         CloseCat.SetActive(true);
-        Camera.main.backgroundColor = new Color(255, 240, 230, 100);
+        Camera.main.backgroundColor = mainBGColor;
     }
 
     public void CloseCategories()
@@ -151,7 +157,7 @@ public class VocabDisplayManager : MonoBehaviour
         // OBCat.SetActive(true);
         setScrollView.SetActive(true);
         CloseCat.SetActive(true);
-        Camera.main.backgroundColor = new Color(255, 240, 230, 100);
+        Camera.main.backgroundColor = mainBGColor;
     }
 
     public void ClearEverything()

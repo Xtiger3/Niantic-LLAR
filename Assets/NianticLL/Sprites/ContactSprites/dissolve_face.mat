@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: dissolve_marerial
+  m_Name: dissolve_face
   m_Shader: {fileID: -6465566751694194690, guid: bfd64260901934571b4f945a0de71244, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseTexture:
-        m_Texture: {fileID: 2800000, guid: 154e0458cdb2a45cb9b0202065119760, type: 3}
+        m_Texture: {fileID: 2800000, guid: 55dc534ba3e6c2843926226b102f910b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
