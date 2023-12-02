@@ -48,11 +48,16 @@ public class DialogueManager : MonoBehaviour
     public GameObject tc;
 
     public int ready = 0;
+    public bool cooldown = false;
+
+    public GameObject quizPanel;
 
     private void Start()
     {
         //TextInit();
         startYPos = continueIndicator.transform.position.y;
+        choice1.GetComponent<Button>().onClick.AddListener(() => DialogueNext());
+        choice2.GetComponent<Button>().onClick.AddListener(() => DialogueNext());
     }
 
     private void Update()
@@ -73,7 +78,28 @@ public class DialogueManager : MonoBehaviour
 
     public void DialogueNext()
     {
+        if(index >= dialogues.Length)
+        {
+            if(ready == 1) quizPanel.SetActive(true);
+            gameObject.SetActive(false);
+            ready = 0;
+            return;
+        }
+
+        if (dialogues[index].dialoguePaths.Length != 0)
+        {
+            Debug.Log("ready" + ready);
+            string dialoguePathText_ = dialogues[index].dialoguePaths[ready].Replace("_", PlayerPrefs.GetString("name"));
+            StartCoroutine(TextFlow(dialoguePathText_, index));
+            choice1.SetActive(false);
+            choice2.SetActive(false);
+            index++;
+            GetComponent<Button>().enabled = true;
+            return;
+        }
+
         anim.SetInteger("anim_id", dialogues[index].anim);
+        
         //anim.SetInteger("anim_id", 0);
         if (!completeText)
         {
@@ -105,6 +131,7 @@ public class DialogueManager : MonoBehaviour
 
     public void TextInit(string dialogueFileName_)
     {
+        StopAllCoroutines();
         choice1.SetActive(false);
         choice2.SetActive(false);
         GetComponent<Button>().enabled = true;
@@ -115,6 +142,7 @@ public class DialogueManager : MonoBehaviour
 
         dialogues = ParseDialogueFile(dialogueFileName);
         index = 0;
+        ready = 0;
 
         Dialogue firstDialogue = dialogues[0];
         nameText.text = firstDialogue.speaker;
@@ -123,7 +151,7 @@ public class DialogueManager : MonoBehaviour
         ToggleChoices(index);
 
         string dialogueText_ = firstDialogue.dialogueText.Replace("_", PlayerPrefs.GetString("name"));
-        StartCoroutine(TextFlow(dialogueText_));
+        StartCoroutine(TextFlow(dialogueText_, index));
     }
 
     public void ReplaceUI(Sprite dialogueSprite)
@@ -131,9 +159,9 @@ public class DialogueManager : MonoBehaviour
         dialogueImage.sprite = dialogueSprite;
     }
 
-    IEnumerator TextFlow(string dialogue)
+    public IEnumerator TextFlow(string dialogue, int ind)
     {
-        if (dialogues[index].trigger == 1 || dialogues[index].trigger == 2)
+        if (dialogues[ind].trigger == 1 || dialogues[ind].trigger == 2)
         {
             GetComponent<Button>().enabled = false;
         }
@@ -155,21 +183,22 @@ public class DialogueManager : MonoBehaviour
         }
         completeText = true;
 
-        if (dialogues[index].trigger == 1)
+        Debug.Log(ind);
+        if (dialogues[ind].trigger == 1)
         {
             nameInputPanel.SetActive(true);
             GetComponent<Button>().enabled = false;
         }
-        if (dialogues[index].trigger == 2)
+        if (dialogues[ind].trigger == 2)
         {
             pickLanguagePanel.SetActive(true);
             GetComponent<Button>().enabled = false;
         }
-        if (dialogues[index].trigger == 3)
+        if (dialogues[ind].trigger == 3)
         {
             StartCoroutine(Flash());
         }
-        if (dialogues[index].trigger == 4)
+        if (dialogues[ind].trigger == 4)
         {
             StartCoroutine(SpinTC());
         }
@@ -235,16 +264,9 @@ public class DialogueManager : MonoBehaviour
 
         if (index >= dialogues.Length)
         {
-            if (dialogues[index-1].dialoguePaths.Length != 0)
-            {
-                //if(dialogues[index].dialoguePaths[0])
-                string dialoguePathText_ = dialogues[index].dialoguePaths[ready].Replace("_", PlayerPrefs.GetString("name"));
-                StartCoroutine(TextFlow(dialoguePathText_));
-            }
-            else
-            {
-                gameObject.SetActive(false);
-            }
+            gameObject.SetActive(false);
+            index = 0;
+            ready = 0;
             return;
         }
 
@@ -254,38 +276,43 @@ public class DialogueManager : MonoBehaviour
         ToggleChoices(index);
 
         string dialogueText_ = dialogues[index].dialogueText.Replace("_", PlayerPrefs.GetString("name"));
-        StartCoroutine(TextFlow(dialogueText_));
+        StartCoroutine(TextFlow(dialogueText_, index));
     }
 
-    private void ToggleChoices(int index)
+    private void ToggleChoices(int ind)
     {
-        //choices
-        if (dialogues[index].dialoguePaths.Length != 0)
+        if (dialogues[ind].dialoguePaths.Length != 0)
         {
-            choice2.GetComponent<Button>().onClick.AddListener(() => SelectReady()); 
+            choice2.GetComponent<Button>().onClick.RemoveAllListeners();
+            choice2.GetComponent<Button>().onClick.AddListener(() => SelectReady());
+            choice1.GetComponent<Button>().onClick.AddListener(() => SetCooldown());
         }
-        if (dialogues[index].choices.Length != 0)
+        if (dialogues[ind].choices.Length != 0)
         {
             choice1.SetActive(true);
-            choice1.GetComponentInChildren<TextMeshProUGUI>().text = dialogues[index].choices[0];
-            if (dialogues[index].choices.Length == 2)
+            choice1.GetComponentInChildren<TextMeshProUGUI>().text = dialogues[ind].choices[0];
+            if (dialogues[ind].choices.Length == 2)
             {
                 choice2.SetActive(true);
-                choice1.GetComponentInChildren<TextMeshProUGUI>().text = dialogues[index].choices[1];
-                Debug.Log("true");
+                choice2.GetComponentInChildren<TextMeshProUGUI>().text = dialogues[ind].choices[1];
             }
             GetComponent<Button>().enabled = false;
         }
     }
 
-    public void ActivateDialogue()
-    {
-        transform.GetChild(0).gameObject.SetActive(true);
-    }
-
     public void SelectReady()
     {
         ready = 1;
-        choice2.GetComponent<Button>().onClick.RemoveListener(() => SelectReady());
+        choice2.GetComponent<Button>().onClick.RemoveAllListeners();
+        choice2.GetComponent<Button>().onClick.AddListener(() => DialogueNext());
+        DialogueNext();
+    }
+
+    public void SetCooldown()
+    {
+        ready = 0;
+        cooldown = true;
+        choice1.GetComponent<Button>().onClick.RemoveAllListeners();
+        choice1.GetComponent<Button>().onClick.AddListener(() => DialogueNext());
     }
 }
