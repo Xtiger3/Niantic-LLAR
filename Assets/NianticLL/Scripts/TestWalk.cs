@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TestWalk : MonoBehaviour
 {
-    private const float StepThreshold = 1.0f; // Adjust this threshold according to your needs
+    private const float StepThreshold = 1.45f; // Adjust threshold
     private bool isStepDetected = false;
     private int stepCount = 0;
 
@@ -14,15 +14,13 @@ public class TestWalk : MonoBehaviour
     {
         Vector3 acceleration = Input.acceleration;
 
-        // Calculate the magnitude of the acceleration vector
         float accelerationMagnitude = acceleration.magnitude;
+        //Debug.Log(accelerationMagnitude);
 
-        // Check if a step is detected based on the threshold
         if (accelerationMagnitude > StepThreshold)
         {
             if (!isStepDetected)
             {
-                // Increment step count when a step is detected
                 stepCount++;
                 isStepDetected = true;
             }
@@ -32,15 +30,11 @@ public class TestWalk : MonoBehaviour
             isStepDetected = false;
         }
 
-        // Update your UI or perform other actions based on the step count
         UpdateUI();
     }
 
     void UpdateUI()
     {
-        // Implement code to update your UI or perform actions based on step count
-        // For example, you can display the step count in a Text component
-        // GetComponent<Text>().text = "Steps: " + stepCount;
         tt.text = "Steps: " + stepCount;
     }
 }

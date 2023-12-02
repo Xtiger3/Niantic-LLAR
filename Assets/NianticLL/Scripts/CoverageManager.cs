@@ -26,8 +26,10 @@ public class CoverageManager : MonoBehaviour
 
     private float waypointYPos;
     private Dictionary<string, GameObject> currWayspots = new();
+    private List<int> notDisplayedNPCs = new List<int> { 0, 0, 1, 2, 3 };
 
     public static CoverageManager Inst;
+    public int numNPC = 3;
     public Vector3 NPCPos;
     public GameObject NPC;
 
@@ -35,11 +37,10 @@ public class CoverageManager : MonoBehaviour
     {
         waypointYPos = obj.transform.position.y;
 
-
-        MapsLatLng mapLatLng = new MapsLatLng(42.2814713, -83.7435344);
-        Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
-        mapPos[1] = waypointYPos;
-        Instantiate(obj, mapPos, obj.transform.rotation);
+        //MapsLatLng mapLatLng = new MapsLatLng(42.2814713, -83.7435344);
+        //Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
+        //mapPos[1] = waypointYPos;
+        //Instantiate(obj, mapPos, obj.transform.rotation);
 
         if (Inst == null)
         {
@@ -63,48 +64,65 @@ public class CoverageManager : MonoBehaviour
             a.Area.Centroid.Distance(args.QueryLocation).CompareTo(
                 b.Area.Centroid.Distance(args.QueryLocation)));
 
-        List<string> displayed = new();
+        List<string> displayedWaypoints = new();
 
-        // Only populate the dropdown with the closest 5 locations.
+        // Find the 5 closest locations
         for (var i = 0; i < Math.Min(areaTargets.Count, 5); i++)
         {
-            // Convert LatLng to game map position
-            MapsLatLng mapLatLng = new MapsLatLng(areaTargets[i].Target.Center.Latitude, areaTargets[i].Target.Center.Longitude);
-            Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
-            
             string wayspotName = areaTargets[i].Target.Name;
-            displayed.Add(wayspotName);
-
-            if (currWayspots.ContainsKey(wayspotName))
-            {
-                // Update the wayspot position
-                //currWayspots[wayspotName].transform.position = mapPos;
-                // Debug.Log("updated gameobj: " + wayspotName);
-
-                //Debug.Log("xy mappos" + mapPos);
-            }
-            else
-            {
-                // Draw the new wayspot
-                GameObject wayspot = Instantiate(obj, mapPos, obj.transform.rotation);
-                mapPos[1] = 20f;
-                currWayspots[areaTargets[i].Target.Name] = wayspot;
-                // Debug.Log("added gameobj: " + wayspotName);
-            }
+            displayedWaypoints.Add(wayspotName);
         }
 
+        // Delete the far away location
         foreach(var item in currWayspots)
         {
-            if (displayed.Contains(item.Key))
+            if (displayedWaypoints.Contains(item.Key))
             {
                 // 
             }
             else if (areaTargets.Count > 0)
             {
-                // Delete far away wayspots
+                int choice = item.Value.GetComponent<WaypointController>().npcChoice;
+                notDisplayedNPCs.Add(choice);
                 Destroy(item.Value);
                 currWayspots.Remove(item.Key);
                 // Debug.Log("destroyed gameobj: " + item.Value);
+            }
+        }
+
+        // Only populate the dropdown with the closest 5 locations
+        for (var i = 0; i < Math.Min(areaTargets.Count, 5); i++)
+        {
+            // Convert LatLng to game map position
+            MapsLatLng mapLatLng = new MapsLatLng(areaTargets[i].Target.Center.Latitude, areaTargets[i].Target.Center.Longitude);
+            Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
+            mapPos[1] = waypointYPos; // y offset so that it is above the map
+
+            string wayspotName = areaTargets[i].Target.Name;
+
+            if (currWayspots.ContainsKey(wayspotName))
+            {
+                // Update the wayspot position
+                currWayspots[wayspotName].transform.position = mapPos;
+                // Debug.Log("updated gameobj: " + wayspotName);
+            }
+            else
+            {
+                // Draw the new wayspot
+                Quaternion rotation = new Quaternion(0, UnityEngine.Random.Range(0, 180), 0, 1);
+                Debug.Log("Supposed to be random rotation y??? " + rotation.y);
+                GameObject wayspot = Instantiate(obj, mapPos, rotation);
+
+                // Add it to dictionary
+                currWayspots[areaTargets[i].Target.Name] = wayspot;
+
+                // Decide NPC for waypoint
+                int choice = notDisplayedNPCs[UnityEngine.Random.Range(0, notDisplayedNPCs.Count)];
+                wayspot.GetComponent<WaypointController>().npcChoice = choice;
+
+                notDisplayedNPCs.Remove(choice);
+
+                //Debug.Log("added gameobj: " + wayspotName);
             }
         }
     }

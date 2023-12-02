@@ -7,10 +7,33 @@ public class VocabularySet : MonoBehaviour
     public List<Category> categories = new List<Category>();
     public static VocabularySet Instance { get; private set; }
 
+    private List<Color> MakiPalette = new List<Color> { new Color(0.953f, 0.918f, 1f, 1),
+                                                        new Color(0.882f, 0.784f, 1f, 1),
+                                                        new Color(0.729f, 0.631f, 0.933f, 1),
+                                                        new Color(0.686f, 0.537f, 1f, 1) };
 
+    private List<Color> OBPalette = new List<Color> { new Color(0.875f, 0.933f, 1f, 1),
+                                                        new Color(0.725f, 0.82f, 1f, 1),
+                                                        new Color(0.584f, 0.8f, 1f, 1),
+                                                        new Color(0.271f, 0.588f, 0.965f, 1) };
+
+    private List<Color> ZeroPalette = new List<Color> { new Color(0.82f, 0.82f, 0.82f, 1),
+                                                        new Color(0.569f, 0.569f, 0.569f, 1),
+                                                        new Color(0.329f, 0.329f, 0.329f, 1),
+                                                        new Color(0.227f, 0.227f, 0.227f, 1) };
+
+    public Dictionary<string, List<Color>> NPCColor = new Dictionary<string, List<Color>>();
+
+    public List<GameObject> NPCToLoadPrefab; // Should be in the order of
+
+    public Dictionary<string, Category> ongoingCategory = new Dictionary<string, Category>();
 
     private void Awake()
     {
+        NPCColor.Add("Maki", MakiPalette);
+        NPCColor.Add("Zero", ZeroPalette);
+        NPCColor.Add("OB", OBPalette);
+
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -18,6 +41,7 @@ public class VocabularySet : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
     }
 

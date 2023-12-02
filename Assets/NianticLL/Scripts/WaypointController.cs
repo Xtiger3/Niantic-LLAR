@@ -8,40 +8,64 @@ public class WaypointController : MonoBehaviour
 {
     public float collisionDistance = 35;
     public float spinSpeed = 10;
-    public List<Sprite> npcSprites;
+    public List<Mesh> npcMesh;
 
-    private int npcChoice;
+    public int npcChoice;
     private bool inPlayerRadius = false;
-    private float wayPointX;
-    private float wayPointZ;
+    private float waypointX;
+    private float waypointZ;
+
+    private Transform waypointObject;
     
     // Start is called before the first frame update
     void Start()
     {
-        npcChoice = Random.Range(1, npcSprites.Count);
-        wayPointX = transform.position.x;
-        wayPointZ = transform.position.z;
+        //npcChoice = Random.Range(0, npcMesh.Count);
+        waypointX = transform.position.x;
+        waypointZ = transform.position.z;
 
+        if (npcChoice == 0)
+        {
+            transform.Find("Waypoint").gameObject.SetActive(false);
+        }
+        else
+        {
+            waypointObject = transform.Find("Waypoint");
+            transform.Find("UFO").gameObject.SetActive(false);
+        }
     }
+
+    //public void Init(float x, float z, int choice)
+    //{
+    //    waypointX = x;
+    //    waypointZ = z;
+    //    npcChoice = choice;
+    //    if (choice == 0)
+    //    {
+    //        transform.Find("Waypoint").gameObject.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        waypointObject = transform.Find("Waypoint");
+    //        transform.Find("UFO").gameObject.SetActive(false);
+    //    }
+    //}
 
     // Update is called once per frame
     void Update()
     {
         transform.Rotate(0, spinSpeed * Time.deltaTime, 0);
 
-
-        //Debug.Log(Mathf.Sqrt(x * x + z * z));
         if (distance() < collisionDistance)
         {
-            GetComponent<SpriteRenderer>().sprite = npcSprites[npcChoice];
-            transform.Find("Wifi").gameObject.SetActive(true);
+            if (npcChoice > 0) waypointObject.GetComponent<MeshFilter>().mesh = npcMesh[npcChoice];
+            transform.Find("Star").gameObject.SetActive(true);
             inPlayerRadius = true;
-            //Debug.Log("Collided w a waypoint");
         }
         else
         {
-            GetComponent<SpriteRenderer>().sprite = npcSprites[0];
-            transform.Find("Wifi").gameObject.SetActive(false);
+            //waypointObject.GetComponent<MeshFilter>().mesh = npcMesh[0];
+            transform.Find("Star").gameObject.SetActive(false);
             inPlayerRadius = false;
         }
 
@@ -64,8 +88,8 @@ public class WaypointController : MonoBehaviour
 
     private float distance()
     {
-        float xDiff = wayPointX - CoverageManager.Inst.NPCPos.y;
-        float zDiff = wayPointZ - CoverageManager.Inst.NPCPos.y;
+        float xDiff = waypointX - CoverageManager.Inst.NPCPos.x;
+        float zDiff = waypointZ - CoverageManager.Inst.NPCPos.z;
 
         return Mathf.Sqrt(xDiff * xDiff + zDiff * zDiff);
 
@@ -83,7 +107,7 @@ public class WaypointController : MonoBehaviour
         {
             //MapManager.Inst.NPCName = "CHANGE LATER";
             //MapManager.Inst.NPCPos = transform.position;
-            SceneManager.LoadScene("argame");
+            if (npcChoice == 0) SceneManager.LoadScene("argame");
         }
         
     }

@@ -38,7 +38,6 @@ public class FCManager : MonoBehaviour
 
 
     // Vocab set parameters
-    public VocabularySet vocabularySet;
     private VocabDisplayManager vacabDisplayManager;
     private VocabularySet.Category selectedCategory;
     private VocabularySet.Category ReviewCategory;
@@ -82,13 +81,13 @@ public class FCManager : MonoBehaviour
         NPCName = splitStrings[0];
         categoryName = splitStrings.Length > 1 ? splitStrings[1] : "";
 
-        frontSide.GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][1];
-        backSide.GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][1];
+        frontSide.GetComponent<Image>().color = VocabularySet.Instance.NPCColor[NPCName][1];
+        backSide.GetComponent<Image>().color = VocabularySet.Instance.NPCColor[NPCName][1];
 
         //Debug.Log("NPCName: " + NPCName);
         //Debug.Log("categoryName: " + categoryName);
-        selectedCategory = vocabularySet.GetCategoryByName(categoryName);
-        ReviewCategory = vocabularySet.GetCategoryByName("Review");
+        selectedCategory = VocabularySet.Instance.GetCategoryByName(categoryName);
+        ReviewCategory = VocabularySet.Instance.GetCategoryByName("Review");
         if (ReviewCategory == null)
         {
             Debug.Log("reviewcategory not detected");
@@ -448,10 +447,10 @@ public class FCManager : MonoBehaviour
 
                 // Set results page UI color
                 foreach (Transform box in ScoreBoxes) {
-                    box.Find("Title").transform.Find("Bar").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][1];
+                    box.Find("Title").transform.Find("Bar").GetComponent<Image>().color = VocabularySet.Instance.NPCColor[NPCName][1];
                 }
-                ResultsPage.transform.Find("Header").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][0];
-                ResultsPage.transform.Find("Header").transform.Find("HeadInner").GetComponent<Image>().color = GameData.Inst.NPCColor[NPCName][1];
+                ResultsPage.transform.Find("Header").GetComponent<Image>().color = VocabularySet.Instance.NPCColor[NPCName][0];
+                ResultsPage.transform.Find("Header").transform.Find("HeadInner").GetComponent<Image>().color = VocabularySet.Instance.NPCColor[NPCName][1];
 
                 frontSide.SetActive(false);
                 backSide.SetActive(false);
