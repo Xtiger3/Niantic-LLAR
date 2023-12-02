@@ -43,7 +43,7 @@ public class MessagingController : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(disableTouch);
+        Debug.Log(MessageData.Inst.displayed);
         if (MessageData.Inst.progression == 0 && !MessageData.Inst.displayed)
         {
             disableTouch = true;
@@ -53,6 +53,7 @@ public class MessagingController : MonoBehaviour
         else if (MessageData.Inst.progression == 0 && !MessageData.Inst.replied)
         {
             updatePlayerOption();
+            MessageData.Inst.progression++;
         }
         else if (MessageData.Inst.progression == 1 && MessageData.Inst.replied && !MessageData.Inst.displayed)
         {
@@ -166,8 +167,8 @@ public class MessagingController : MonoBehaviour
         yield return SendFromMessage("#027", "Welcome!");
         yield return SendFromMessage("#094", "Welcome to ICRC!");
         MessageData.Inst.replied = false;
-        MessageData.Inst.displayed = false;
-        MessageData.Inst.progression++;
+        //MessageData.Inst.displayed = false;
+        //MessageData.Inst.progression++;
         disableTouch = false;
     }
 
