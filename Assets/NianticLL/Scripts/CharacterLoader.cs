@@ -14,12 +14,12 @@ public class CharacterLoader : MonoBehaviour
         if (CBSceneManager.CBcharacter == 0)
         {
             characterModels[0].SetActive(true);
-            //characterModels[1].SetActive(false);
-            //characterModels[2].SetActive(false);
+            characterModels[1].SetActive(false);
+            characterModels[2].SetActive(false);
 
             characterImages[0].SetActive(true);
-            //characterImages[1].SetActive(false);
-            //characterImages[2].SetActive(false);
+            characterImages[1].SetActive(false);
+            characterImages[2].SetActive(false);
 
 
         } else if (CBSceneManager.CBcharacter == 1)
@@ -37,6 +37,10 @@ public class CharacterLoader : MonoBehaviour
             characterModels[0].SetActive(false);
             characterModels[1].SetActive(false);
             characterModels[2].SetActive(true);
+
+            characterImages[0].SetActive(false);
+            characterImages[1].SetActive(false);
+            characterImages[2].SetActive(true);
         }
          
     }
