@@ -6,34 +6,39 @@
         "choices": [
             "Yea"
         ],
-        "anim": 5
+        "anim": 5,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "Nice! Let�s get started then. I�ll say the english word and then you should select the correct japanese word.",
+        "dialogueText": "Nice! Let's get started then. I'll say the English word and then you should select the correct Japanese word.",
         "trigger": 0,
         "choices": [],
-        "anim": 4
+        "anim": 4,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "Fantastic job #115!  You�ve memorized them so fast. I�ve sent the new vocab set for you to learn! Keep it up!",
+        "dialogueText": "Fantastic job #115!  You've memorized them so fast. I've sent the new vocab set for you to learn! Keep it up!",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "No worries, study a bit longer and come back to me when you are ready!",
+        "dialogueText": "No worries, study a bit longer and come back to me when you are ready.",
         "trigger": 0,
         "choices": [],
-        "anim": 4
+        "anim": 4,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "It�s okay. Come back again when you are ready!",
+        "dialogueText": "It's okay. Come back again when you are ready!",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     }
 ]

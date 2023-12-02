@@ -83,6 +83,7 @@ public class DialogueManager : MonoBehaviour
             if(ready == 1) quizPanel.SetActive(true);
             gameObject.SetActive(false);
             ready = 0;
+            cooldown = true;
             return;
         }
 
@@ -264,6 +265,7 @@ public class DialogueManager : MonoBehaviour
 
         if (index >= dialogues.Length)
         {
+            cooldown = true;
             gameObject.SetActive(false);
             index = 0;
             ready = 0;

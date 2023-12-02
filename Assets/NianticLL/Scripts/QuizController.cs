@@ -62,6 +62,7 @@ public class QuizController : MonoBehaviour
         else
         {
             dm.gameObject.SetActive(true);
+            transform.GetChild(0).gameObject.SetActive(false);
             //end quiz, start dialogue 
             if(countCorrect == quizWords.Count)
             {
@@ -74,7 +75,7 @@ public class QuizController : MonoBehaviour
                 string dialogue = "All you need is practice! Try again next time...";
                 yield return StartCoroutine(dm.TextFlow(dialogue, 0));
             }
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 

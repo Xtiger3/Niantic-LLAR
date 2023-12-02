@@ -10,6 +10,13 @@ public class IntroController : MonoBehaviour
     public TMP_InputField nameInput;
     public DialogueManager dm;
 
+    public GameObject prefab;
+    public GameObject scanningUI;
+    private void Start()
+    {
+        StartCoroutine(SpawnPrefab());
+    }
+
     public void SetName()
     {
         nameInputPanel.SetActive(false);
@@ -19,5 +26,13 @@ public class IntroController : MonoBehaviour
     public void ClosePanel(GameObject panel)
     {
         panel.SetActive(false);
+    }
+
+    IEnumerator SpawnPrefab()
+    {
+       
+        yield return new WaitForSeconds(5f);
+        scanningUI.SetActive(false);
+        Instantiate(prefab);
     }
 }

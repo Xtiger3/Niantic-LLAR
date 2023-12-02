@@ -7,56 +7,64 @@
             "Yea??",
             "No you!"
         ],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "...you can call me Dr. Zero. I’ve just traveled from my planet Aeoien to come here to your world Earth!",
+        "dialogueText": "...you can call me Dr. Zero. I've just traveled from my planet Aeoien to come here to your world Earth!",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "What’s your name?",
+        "dialogueText": "What's your name?",
         "trigger": 1,
         "choices": [],
-        "anim": 1
+        "anim": 1,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "Nice to meet you, _. I am really impressed with the speed at which humans learn language.",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "My company aims at creating a machine that can efficiently replicate this language learning ability.",
+        "dialogueText": "My company, the ICRC (Interplanetary Communications Research Company) aims at creating a machine that can efficiently replicate this language learning ability.",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "We’ve already developed a harmless chip that can monitor brain activity.",
+        "dialogueText": "We've already developed a harmless chip that can monitor brain activity.",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "We would like to hire a human to help us study the memorization process.",
         "trigger": 0,
         "choices": [],
-        "anim": 3
+        "anim": 3,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "You’re the first one I’ve bumped into so you have to help! All you have to do is learn a foreign language!",
+        "dialogueText": "You're the first one I've bumped into so you have to help! All you have to do is learn a foreign language!",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
@@ -70,7 +78,7 @@
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "Great! You’re officially employed now. Let me give you your researcher identification tag!",
+        "dialogueText": "Great! You're officially employed now. Let me give you your researcher identification tag!",
         "trigger": 0,
         "choices": [],
         "anim": 0
@@ -84,7 +92,7 @@
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "Let’s get started then! Here’s our company's specially developed communication device the TC V21!",
+        "dialogueText": "Let's get started then! Here's our company's specially developed communication device the TC V21!",
         "trigger": 4,
         "choices": [],
         "anim": 0
@@ -105,14 +113,14 @@
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "Here I’ll add my information now into your contact book!",
+        "dialogueText": "Here I'll add my information now into your contact book!",
         "trigger": 3,
         "choices": [],
         "anim": 0
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "If I don’t see you in person I'll send out some periodic reminders through the messaging app to check back in with you to see how you’re doing!",
+        "dialogueText": "If I don't see you in person I'll send out some periodic reminders through the messaging app to check back in with you to see how you're doing.",
         "trigger": 0,
         "choices": [
             "Thanks, boss!"
@@ -121,21 +129,21 @@
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": " No problem _! We’ve set up waypoint connection points around your area so when you have everything memorized come to us so we can analyze your data!",
+        "dialogueText": " No problem _! We've set up waypoint connection points around your area so when you have everything memorized come to us so we can analyze your data.",
         "trigger": 0,
         "choices": [],
         "anim": 0
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "To save us traveling energy, we all have holographic transfers of ourselves- but it’ll be like we’re actually here!",
+        "dialogueText": "To save us traveling energy, we all have holographic transfers of ourselves- but it'll be like we're actually here!",
         "trigger": 0,
         "choices": [],
         "anim": 0
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "The camera on the TC will be able to see us! Currently #008 and #114 also have holographic transfers on Earth right now!",
+        "dialogueText": "The camera on the TC will be able to see us. Currently #008 and #114 also have holographic transfers on Earth right now!",
         "trigger": 0,
         "choices": [],
         "anim": 0
@@ -149,28 +157,28 @@
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "Yeah we’ve checked it with many studies. Anyways, Here’s your first set of words!",
+        "dialogueText": "Yeah we've checked it with many human studies. Anyways, Here's your first set of words!",
         "trigger": 0,
         "choices": [],
         "anim": 0
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "I’ve updated your vocabulary app. When you’re ready, walk to the waypoint where I’m located and hold up the device to see us!",
+        "dialogueText": "I've updated your vocabulary app. When you're ready, walk to the waypoint where I'm located and hold up the device to see us.",
         "trigger": 0,
         "choices": [],
         "anim": 0
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "If you aren’t able to complete this during working hours, you will be expected to work overtime.",
+        "dialogueText": "If you aren't able to complete this during working hours, you will be expected to work overtime.",
         "trigger": 0,
         "choices": [ "!!!" ],
         "anim": 6
     },
     {
         "speaker": "DR. ZERO",
-        "dialogueText": "Did I forget to mention that earlier? Don’t worry, we will compensate you well. See you soon #115.",
+        "dialogueText": "Did I forget to mention that earlier? Don't worry, we will compensate you well. See you soon #115.",
         "trigger": 0,
         "choices": [],
         "anim": 0

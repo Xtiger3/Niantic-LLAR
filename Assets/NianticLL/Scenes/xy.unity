@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -356,9 +356,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dac6980e1302ba4ba437e6c267bd4cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueUI: {fileID: 0}
+  dialogueUI: {fileID: 549963379}
   dialogueSprite: {fileID: 21300000, guid: e6aa80e9277003b41929701a456588ff, type: 3}
   dialogueFileName: zero
+  npcName: DR. ZERO
 --- !u!65 &159873769
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -852,6 +853,8 @@ MonoBehaviour:
   newContactAddedPanel: {fileID: 408327488}
   tc: {fileID: 0}
   ready: 0
+  cooldown: 0
+  quizPanel: {fileID: 0}
 --- !u!1 &661379927
 GameObject:
   m_ObjectHideFlags: 0

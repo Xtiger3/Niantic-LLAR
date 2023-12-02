@@ -9,6 +9,7 @@ public class NPCController : MonoBehaviour
     public Sprite dialogueSprite;
     public string dialogueFileName;
     public string npcName;
+    private bool selected = false;
 
     private void Start()
     {
@@ -17,14 +18,20 @@ public class NPCController : MonoBehaviour
 
     private void Update()
     {
+        if (dialogueUI.GetComponent<DialogueManager>().cooldown)
+        {
+            // 
+        }
+
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if(!EventSystem.current.IsPointerOverGameObject() && hit.transform == transform)
+                if(!selected && !EventSystem.current.IsPointerOverGameObject() && hit.transform == transform)
                 {
+                    selected = true;
                     if (dialogueUI.GetComponent<DialogueManager>().cooldown)
                     {
                         dialogueUI.SetActive(true);

@@ -1,13 +1,13 @@
 [
     {
-        "speaker": "OB",
-        "dialogueText": "Hey what’s up? Are you ready for the memorization test?",
+        "speaker": "MAKI",
+        "dialogueText": "#115 are you ready for the memorization test?",
         "trigger": 0,
         "choices": [
             "No",
             "Yes"
         ],
         "anim": 1,
-        "dialoguePaths": [ "Okay, come back later. I'll go back to do doing my work.", "Let's goooo!" ]
+        "dialoguePaths": [ "Study hard.", "Let's begin." ]
     }
 ]
