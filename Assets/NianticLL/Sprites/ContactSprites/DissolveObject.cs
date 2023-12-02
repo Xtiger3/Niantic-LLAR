@@ -32,14 +32,13 @@ public class DissolveObject : MonoBehaviour
 
             objectHeight -= Time.deltaTime * dissolveSpeed;
 
-            // Ensure objectHeight doesn't go below 0
+ 
             objectHeight = Mathf.Max(neg_height, objectHeight);
 
-            // Calculate height based on the global Y position
             float normalizedHeight = Mathf.InverseLerp(transform.position.y - objectHeight * 0.5f, transform.position.y + objectHeight * 0.5f, transform.position.y);
             float height = Mathf.Lerp(0f, objectHeight, normalizedHeight);
 
-            // Set material properties
+
             SetHeight(material, height);
 
         }
