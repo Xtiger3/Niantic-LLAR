@@ -34,6 +34,8 @@ public class VocabularySet : MonoBehaviour
                                 {"Zero", new List<string> {"GREETINGS", "RELATIONSHIPS", "TRANSPORTATIONS"}},
                                 {"OB", new List<string> {"ANIMALS", "???", "???"}}};
 
+    public bool intro = true;
+
     private void Awake()
     {
         NPCColor.Add("Maki", MakiPalette);

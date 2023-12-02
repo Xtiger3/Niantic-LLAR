@@ -58,7 +58,7 @@ public class TC : MonoBehaviour
         float start = startScale;
         float end = endScale;
 
-        float startRotation = transform.eulerAngles.y;
+        float startRotation = transform.localEulerAngles.y;
         float endRotation = startRotation + (360.0f);
 
         while (t < spinDuration)
@@ -68,7 +68,7 @@ public class TC : MonoBehaviour
             transform.localScale = Vector3.one * scale;
 
             float yRotation = Mathf.Lerp(startRotation, endRotation, t / spinDuration) % 360.0f;
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, yRotation, transform.localEulerAngles.z);
 
             transform.localPosition = Vector3.Lerp(startPos, endPos, t / spinDuration);
 
@@ -116,7 +116,7 @@ public class TC : MonoBehaviour
         float start = startScale;
         float end = endScale;
 
-        float startRotation = transform.eulerAngles.y;
+        float startRotation = transform.localEulerAngles.y;
         float endRotation = startRotation + (360.0f);
 
         while (t < spinDuration)
@@ -126,7 +126,7 @@ public class TC : MonoBehaviour
             transform.localScale = Vector3.one * scale;
 
             float yRotation = Mathf.Lerp(startRotation, endRotation, t / spinDuration) % 360.0f;
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, yRotation, transform.localEulerAngles.z);
 
             transform.localPosition = Vector3.Lerp(endPos, startPos, t / spinDuration);
 
