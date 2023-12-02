@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class IntroController : MonoBehaviour
 {
@@ -15,6 +16,14 @@ public class IntroController : MonoBehaviour
     private void Start()
     {
         StartCoroutine(SpawnPrefab());
+    }
+
+    private void Update()
+    {
+        if (dm.cooldown)
+        {
+            SceneManager.LoadScene("CustomMap");
+        }
     }
 
     public void SetName()
