@@ -23,6 +23,7 @@ public class WaypointController : MonoBehaviour
         //npcChoice = Random.Range(0, npcMesh.Count);
         waypointX = transform.position.x;
         waypointZ = transform.position.z;
+        transform.Rotate(0, Random.Range(0, 180), 0);
 
         if (npcChoice == 0)
         {

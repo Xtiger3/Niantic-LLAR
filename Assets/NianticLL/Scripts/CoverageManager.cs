@@ -109,9 +109,7 @@ public class CoverageManager : MonoBehaviour
             else
             {
                 // Draw the new wayspot
-                Quaternion rotation = new Quaternion(0, UnityEngine.Random.Range(0, 180), 0, 1);
-                Debug.Log("Supposed to be random rotation y??? " + rotation.y);
-                GameObject wayspot = Instantiate(obj, mapPos, rotation);
+                GameObject wayspot = Instantiate(obj, mapPos, obj.transform.rotation);
 
                 // Add it to dictionary
                 currWayspots[areaTargets[i].Target.Name] = wayspot;
