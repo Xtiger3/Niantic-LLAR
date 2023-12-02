@@ -74,49 +74,56 @@
             "I would love to!",
             "Sure, if I get paid well."
         ],
-        "anim": 4
+        "anim": 4,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "Great! You're officially employed now. Let me give you your researcher identification tag!",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "Ah, 115 is a good number for our new great employee! So, what language would you like to learn?",
         "trigger": 2,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "Let's get started then! Here's our company's specially developed communication device the TC V21!",
         "trigger": 4,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "This device will hold all of your work material and help you communicate with me and all of your other colleagues!",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "This first app holds all of the study material you need to memorize!",
         "trigger": 0,
         "choices": [],
-        "anim": 4
+        "anim": 4,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "Here I'll add my information now into your contact book!",
         "trigger": 3,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
@@ -125,62 +132,71 @@
         "choices": [
             "Thanks, boss!"
         ],
-        "anim": 5
+        "anim": 5,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": " No problem _! We've set up waypoint connection points around your area so when you have everything memorized come to us so we can analyze your data.",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "To save us traveling energy, we all have holographic transfers of ourselves- but it'll be like we're actually here!",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "The camera on the TC will be able to see us. Currently #008 and #114 also have holographic transfers on Earth right now!",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "Go walk around and meet then! According to your earthling studies, walking while memorizing enhances retainment!",
         "trigger": 0,
         "choices": [ "Really?" ],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "Yeah we've checked it with many human studies. Anyways, Here's your first set of words!",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "I've updated your vocabulary app. When you're ready, walk to the waypoint where I'm located and hold up the device to see us.",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "If you aren't able to complete this during working hours, you will be expected to work overtime.",
         "trigger": 0,
         "choices": [ "!!!" ],
-        "anim": 6
+        "anim": 6,
+        "dialoguePaths": []
     },
     {
         "speaker": "DR. ZERO",
         "dialogueText": "Did I forget to mention that earlier? Don't worry, we will compensate you well. See you soon #115.",
         "trigger": 0,
         "choices": [],
-        "anim": 0
+        "anim": 0,
+        "dialoguePaths": []
     }
 ]

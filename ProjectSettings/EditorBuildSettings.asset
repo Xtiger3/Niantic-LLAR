@@ -36,14 +36,14 @@ EditorBuildSettings:
     path: Assets/NianticLL/Scenes/sonia.unity
     guid: 16c701df17fe9d748be02106c6b20fa2
   - enabled: 0
-    path: Assets/Pedometer/Example/StepCounter.unity
-    guid: e5fcab55ab6a24d8eb5dd6198b597019
-  - enabled: 0
     path: Assets/NianticLL/Scenes/xy.unity
     guid: 20c1124a9d9e347b68f116f2cf1c62e2
-  - enabled: 1
+  - enabled: 0
     path: Assets/NianticLL/Scenes/CharacterProfile.unity
     guid: 24f8bd5b583754ef49d81c371e25a9d5
+  - enabled: 1
+    path: Assets/NianticLL/Scenes/message.unity
+    guid: 7f923b88bc3d247488f65d5a02047332
   m_configObjects:
     Niantic.Lightship.AR.LightshipSettings: {fileID: 11400000, guid: 05b0489c7d3114fe3b5a5321c06a66dd, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 0ba5772da672041b0b49b09b47e32b89, type: 2}

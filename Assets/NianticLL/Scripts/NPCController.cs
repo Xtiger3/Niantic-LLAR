@@ -13,7 +13,7 @@ public class NPCController : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Animator>().SetInteger("anim_id", 0);
+        dialogueUI = GameObject.Find("DialogueCanvas").transform.GetChild(0).gameObject;
     }
 
     private void Update()
