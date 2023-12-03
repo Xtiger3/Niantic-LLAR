@@ -112,6 +112,10 @@ MonoBehaviour:
   - {fileID: 6255687079079774844, guid: 42b744861c234459aaf41c608d12c97a, type: 3}
   star: {fileID: 8707037011637747967}
   npcChoice: 0
+  prefabs:
+  - {fileID: 2297799968644051959, guid: 71de0aafb13530247b55984631538795, type: 3}
+  - {fileID: 7715744893778640171, guid: 6adab9d07c4104bb8a9927d830e83cd5, type: 3}
+  - {fileID: 2473977256335931045, guid: 99b2e3f4dbee840e1a41c1ed7a4a6a64, type: 3}
 --- !u!135 &1885067022183861564
 SphereCollider:
   m_ObjectHideFlags: 0

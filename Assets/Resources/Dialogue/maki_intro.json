@@ -18,7 +18,7 @@
     {
         "speaker": "MAKI",
         "dialogueText": "I'm researcher #008 but you can call me Maki. I’ll add another category of word to your TC for you.",
-        "trigger": 0,
+        "trigger": 3,
         "choices": [],
         "anim": 1,
         "dialoguePaths": []
