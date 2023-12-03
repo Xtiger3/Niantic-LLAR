@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Launcher : MonoBehaviour
 {
@@ -15,15 +16,18 @@ public class Launcher : MonoBehaviour
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 #endif
         {
-            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            GameObject bullet = Instantiate(prefab, mouseRay.origin, Quaternion.identity);
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
-
-            if (rb != null)
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                rb.velocity = mouseRay.direction * throwSpeed;
-                //bullet.transform.rotation = Quaternion.LookRotation(rb.velocity);
-                //bullet.transform.Rotate(0f, 50 * Time.deltaTime, 0f, Space.Self);
+                Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                GameObject bullet = Instantiate(prefab, mouseRay.origin, Quaternion.identity);
+                Rigidbody rb = bullet.GetComponent<Rigidbody>();
+
+                if (rb != null)
+                {
+                    rb.velocity = mouseRay.direction * throwSpeed;
+                    //bullet.transform.rotation = Quaternion.LookRotation(rb.velocity);
+                    //bullet.transform.Rotate(0f, 50 * Time.deltaTime, 0f, Space.Self);
+                }
             }
         }
     }
