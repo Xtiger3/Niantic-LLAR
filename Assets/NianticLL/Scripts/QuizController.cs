@@ -25,7 +25,8 @@ public class QuizController : MonoBehaviour
 
     private void Start()
     {
-        quizWords = VocabularySet.Instance.GetCategoryByName("DAYS").Words;
+        //quizWords = VocabularySet.Instance.GetCategoryByName("DAYS").Words;
+        quizWords = VocabularySet.Instance.GetCategoryByName(VocabularySet.Instance.NPCs[dm.nameText.text][VocabularySet.Instance.ongoingCategory[dm.nameText.text]]).Words;
         randomJapaneseIndices = ShuffleIndices();
         PopulateQuestion();
     }

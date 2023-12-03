@@ -103,7 +103,10 @@ public class VocabGameController : MonoBehaviour
         //categoryText.text = VocabularySet.Instance.categories[Random.Range(0, VocabularySet.Instance.categories.Count)].Name;
         while (gameWords.Count == 0)
         {
-            gameWords = VocabularySet.Instance.categories[Random.Range(0, VocabularySet.Instance.categories.Count)].Words;
+            //gameWords = VocabularySet.Instance.categories[Random.Range(0, VocabularySet.Instance.categories.Count)].Words;
+            int randCategory = Random.Range(0, VocabularySet.Instance.ongoingCategory.Count);
+            List<string> keyList = new List<string>(VocabularySet.Instance.ongoingCategory.Keys);
+            gameWords = VocabularySet.Instance.GetCategoryByName(keyList[randCategory]).Words;
         }
 
         // only one category per game i think 

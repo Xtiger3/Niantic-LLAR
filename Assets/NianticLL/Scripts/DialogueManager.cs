@@ -83,7 +83,7 @@ public class DialogueManager : MonoBehaviour
             if(ready == 1) quizPanel.SetActive(true);
             gameObject.SetActive(false);
             ready = 0;
-            cooldown = true;
+            //cooldown = true;
             return;
         }
 
