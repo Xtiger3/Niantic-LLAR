@@ -34,7 +34,7 @@ public class VocabGameController : MonoBehaviour
     //public TextMeshProUGUI categoryText;
     public TextMeshProUGUI countdownText;
     public TextMeshProUGUI gameScoreText;
-    public TextMeshProUGUI instructionsText;
+    public GameObject instructions;
 
     public GameObject[] stars;
 
@@ -69,11 +69,13 @@ public class VocabGameController : MonoBehaviour
 
     private void Start()
     {
-        StartGame();
+        //StartGame();
 
     }
     public void StartGame()
     {
+        instructions.SetActive(false);
+        gameUI.SetActive(true);
         StartCoroutine(Init());
     }
 
@@ -91,7 +93,7 @@ public class VocabGameController : MonoBehaviour
         countdownText.text = "START";
         yield return new WaitForSeconds(1f);
         countdownText.gameObject.SetActive(false);
-        instructionsText.gameObject.SetActive(false);
+        //instructions.SetActive(false);
 
         timer = timeLimit;
         timerRunning = true;
