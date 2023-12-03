@@ -3,38 +3,38 @@ using UnityEngine;
 
 public class TestWalk : MonoBehaviour
 {
-    private const float StepThreshold = 1.45f; // Adjust threshold
-    private bool isStepDetected = false;
-    private int stepCount = 0;
+    //private const float StepThreshold = 1.45f; // Adjust threshold
+    //private bool isStepDetected = false;
+    //private int stepCount = 0;
 
     public TextMeshProUGUI tt;
 
 
     void Update()
     {
-        Vector3 acceleration = Input.acceleration;
+        //Vector3 acceleration = Input.acceleration;
 
-        float accelerationMagnitude = acceleration.magnitude;
-        //Debug.Log(accelerationMagnitude);
+        //float accelerationMagnitude = acceleration.magnitude;
+        ////Debug.Log(accelerationMagnitude);
 
-        if (accelerationMagnitude > StepThreshold)
-        {
-            if (!isStepDetected)
-            {
-                stepCount++;
-                isStepDetected = true;
-            }
-        }
-        else
-        {
-            isStepDetected = false;
-        }
+        //if (accelerationMagnitude > StepThreshold)
+        //{
+        //    if (!isStepDetected)
+        //    {
+        //        stepCount++;
+        //        isStepDetected = true;
+        //    }
+        //}
+        //else
+        //{
+        //    isStepDetected = false;
+        //}
 
         UpdateUI();
     }
 
     void UpdateUI()
     {
-        tt.text = "Steps: " + stepCount;
+        tt.text = "Steps: " + VocabularySet.Instance.stepCount;
     }
 }

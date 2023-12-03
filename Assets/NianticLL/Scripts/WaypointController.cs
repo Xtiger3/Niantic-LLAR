@@ -17,6 +17,7 @@ public class WaypointController : MonoBehaviour
     //private float waypointZ;
 
     private Transform waypointObject;
+    private List<string> npcAtWaypoint = new List<string> { "UFO", "Zero", "Maki", "OB" };
     
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,11 @@ public class WaypointController : MonoBehaviour
         {
             waypointObject = transform.Find("Waypoint");
             transform.Find("UFO").gameObject.SetActive(false);
+
+            if (VocabularySet.Instance.ongoingCategory.ContainsKey(npcAtWaypoint[npcChoice]))
+            {
+                waypointObject.GetComponent<MeshFilter>().mesh = npcMesh[npcChoice];
+            }
         }
     }
 
@@ -72,6 +78,7 @@ public class WaypointController : MonoBehaviour
             inPlayerRadius = false;
         }
 
+        
 
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)

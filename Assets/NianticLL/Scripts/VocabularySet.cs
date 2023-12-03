@@ -124,6 +124,36 @@ public class VocabularySet : MonoBehaviour
         categories.Add(reviewCategory);
     }
 
+    private void Update()
+    {
+        IncrementStepCount();
+    }
+
+    private const float StepThreshold = 1.45f; // Adjust threshold
+    private bool isStepDetected = false;
+    public int stepCount = 0;
+
+    private void IncrementStepCount()
+    {
+        Vector3 acceleration = Input.acceleration;
+
+        float accelerationMagnitude = acceleration.magnitude;
+        //Debug.Log(accelerationMagnitude);
+
+        if (accelerationMagnitude > StepThreshold)
+        {
+            if (!isStepDetected)
+            {
+                stepCount++;
+                isStepDetected = true;
+            }
+        }
+        else
+        {
+            isStepDetected = false;
+        }
+    }
+
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
