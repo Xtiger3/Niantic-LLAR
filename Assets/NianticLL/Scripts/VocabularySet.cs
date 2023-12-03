@@ -98,7 +98,7 @@ public class VocabularySet : MonoBehaviour
                                                     new Word("Hello", "こんにちは (Konnichiwa)"),
                                                     new Word("Thank you", "ありがとう (Arigatou)"),
                                                     new Word("Goodbye", "さようなら (Sayonara)"),
-                                                    new Word("Please", "お願いします (Onegaishimasu)"),
+                                                    new Word("Please", "お願い (Onegai)"),
                                                     new Word("Yes", "はい (Hai)"),
                                                     new Word("No", "いいえ (Iie)"),
                                                     new Word("Maybe", "たぶん (Tabun)")};
@@ -110,7 +110,17 @@ public class VocabularySet : MonoBehaviour
         transportsCategory.Words = new List<Word> {};
 
         Category animalsCategory = new Category("ANIMALS");
-        animalsCategory.Words = new List<Word> {};
+        animalsCategory.Words = new List<Word> { new Word("Dog", "犬 (Inu)"),
+                                                    new Word("Cat", "猫 (Neko)"),
+                                                    new Word("Fish", "魚 (Sakana)"),
+                                                    new Word("Bird", "鳥 (Tori)"),
+                                                    new Word("Snake", "蛇 (Hebi)"),
+                                                    new Word("Bug", "虫 (Mushi)"),
+                                                    new Word("Monkey", "猿 (Saru)"),
+                                                    new Word("Cow", "牛 (Ushi)"),
+                                                    new Word("Tiger", "虎 (Tora)"),
+                                                    new Word("Horse", "馬 (Uma)"),
+                                                    new Word("Shark", "サメ (Same)")};
 
         Category idkkk = new Category("???");
         idkkk.Words = new List<Word> {};
