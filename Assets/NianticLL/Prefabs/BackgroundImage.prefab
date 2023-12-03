@@ -89,5 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd87cbdb28a94445a8bcb2b5966aa5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 0.2
+  scrollSpeed: 0.1
   backgroundPrefab: {fileID: 113054386079027712}
+  offset: 40
+  canSpawn: 1
