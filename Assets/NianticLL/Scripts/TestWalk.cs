@@ -35,6 +35,6 @@ public class TestWalk : MonoBehaviour
 
     void UpdateUI()
     {
-        tt.text = "Steps: " + VocabularySet.Instance.stepCount;
+        tt.text = "STEPS: " + VocabularySet.Instance.stepCount;
     }
 }
