@@ -19,7 +19,7 @@ public class BackgroundScroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(GetComponent<RectTransform>().anchoredPosition.x);
+        //Debug.Log(GetComponent<RectTransform>().anchoredPosition.x);
 
 
         GetComponent<RectTransform>().anchoredPosition += new Vector2(GetComponent<RectTransform>().rect.width, -GetComponent<RectTransform>().rect.height + offset).normalized * scrollSpeed;

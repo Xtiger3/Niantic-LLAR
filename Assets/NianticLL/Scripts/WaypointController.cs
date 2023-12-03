@@ -66,7 +66,7 @@ public class WaypointController : MonoBehaviour
     {
         transform.Rotate(0, spinSpeed * Time.deltaTime, 0);
 
-        Debug.Log("Loc for choice num " + npcChoice + ": " + Distance());
+        //Debug.Log("Loc for choice num " + npcChoice + ": " + Distance());
         if (Distance() < collisionDistance)
         {
             if (npcChoice > 0) waypointObject.GetComponent<MeshFilter>().mesh = npcMesh[npcChoice];
@@ -134,7 +134,7 @@ public class WaypointController : MonoBehaviour
                 VocabularySet.Instance.npcPrefab = prefabs[0];
                 if (VocabularySet.Instance.ongoingCategory.ContainsKey("Zero"))
                 {
-                    VocabularySet.Instance.dialogueFile = "zero-quiz";
+                    VocabularySet.Instance.dialogueFile = "zero_quiz";
                 }
             }
 
@@ -156,9 +156,9 @@ public class WaypointController : MonoBehaviour
             {
                 SceneManager.LoadScene("intro");
                 VocabularySet.Instance.npcPrefab = prefabs[2];
-                if (VocabularySet.Instance.ongoingCategory.ContainsKey("Maki"))
+                if (VocabularySet.Instance.ongoingCategory.ContainsKey("OB"))
                 {
-                    VocabularySet.Instance.dialogueFile = "ob-_uiz";
+                    VocabularySet.Instance.dialogueFile = "ob_quiz";
                 }
                 else
                 {

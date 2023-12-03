@@ -37,10 +37,12 @@ public class CoverageManager : MonoBehaviour
     {
         waypointYPos = obj.transform.position.y;
 
-        //MapsLatLng mapLatLng = new MapsLatLng(42.2814713, -83.7435344);
-        //Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
-        //mapPos[1] = waypointYPos;
-        //Instantiate(obj, mapPos, obj.transform.rotation);
+        MapsLatLng mapLatLng = new MapsLatLng(42.2814713, -83.7435344);
+        Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
+        mapPos[1] = waypointYPos;
+        GameObject test = Instantiate(obj, mapPos, obj.transform.rotation);
+        test.GetComponent<WaypointController>().npcChoice = 3;
+
 
         if (Inst == null)
         {

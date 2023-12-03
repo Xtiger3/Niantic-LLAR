@@ -11,7 +11,7 @@ public class NPCController : MonoBehaviour
     public string npcName;
     private bool selected = false;
 
-    public int progression = -1;
+    //public int progression = -1;
 
     private void Start()
     {
@@ -24,12 +24,12 @@ public class NPCController : MonoBehaviour
         if (dialogueUI.GetComponent<DialogueManager>().cooldown)
         {
             VocabularySet.Instance.AddToOngoingCategory(npcName);
-            MessageData.Inst.progression = progression;
-            if(progression != -1)
-            {
-                MessageData.Inst.displayed = false;
-                MessageData.Inst.notif = true;
-            }
+            //if(progression != -1)
+            //{
+            //    MessageData.Inst.progression = progression;
+            //    MessageData.Inst.displayed = false;
+            //    MessageData.Inst.notif = true;
+            //}
 
             if(VocabularySet.Instance.intro)
                 VocabularySet.Instance.LoadScene("CustomMap");
