@@ -10,7 +10,7 @@ public class MessageData : MonoBehaviour
     public List<Message> textToDisplayOnStart = new List<Message>();
     public bool displayed = false;
     public bool replied = true;
-    public bool notif = false;
+    public bool notif = true;
 
 
     // Start is called before the first frame update
@@ -30,7 +30,14 @@ public class MessageData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!displayed) notif = true;
+
+        if (VocabularySet.Instance.ongoingCategory.ContainsKey("OB") && progression == 1 && displayed)
+        {
+            progression++;
+            displayed = false;
+            //MessageData.Inst.notif = true;
+        }
     }
 
     public class Message

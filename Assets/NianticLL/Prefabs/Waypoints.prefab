@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd65a7b7bf4554f61990ef686b1273d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionDistance: 100
+  collisionDistance: 60
   spinSpeed: 10
   npcMesh:
   - {fileID: 5512361600001258384, guid: dd30368221b8e45a1a4395703ed1ea5e, type: 3}

@@ -51,7 +51,7 @@ EditorBuildSettings:
     path: Assets/NianticLL/Scenes/ContactBook.unity
     guid: 52cde437ae5814a95901decb21cc589b
   - enabled: 1
-    path: Assets/NianticLL/Scenes/Message.unity
+    path: Assets/NianticLL/Scenes/message.unity
     guid: 7f923b88bc3d247488f65d5a02047332
   m_configObjects:
     Niantic.Lightship.AR.LightshipSettings: {fileID: 11400000, guid: 05b0489c7d3114fe3b5a5321c06a66dd, type: 2}

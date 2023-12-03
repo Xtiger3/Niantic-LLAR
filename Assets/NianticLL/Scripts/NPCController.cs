@@ -21,6 +21,15 @@ public class NPCController : MonoBehaviour
 
     private void Update()
     {
+
+        if (this.gameObject.transform.position.y < -50f)
+        {
+            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x,
+                                                                -50f,
+                                                                this.gameObject.transform.position.z);
+
+        }
+
         if (dialogueUI.GetComponent<DialogueManager>().cooldown)
         {
             VocabularySet.Instance.AddToOngoingCategory(npcName);

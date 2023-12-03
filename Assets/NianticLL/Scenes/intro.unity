@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 1568414836858200, guid: f0e0be81472ff1243aa2afa27e5d0e61, type: 3}
+  m_PlanePrefab: {fileID: 0}
   m_DetectionMode: -1
 --- !u!114 &614310997
 MonoBehaviour:
@@ -596,7 +596,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614310994}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3859a92a05d4f5d418cb6ca605290e74, type: 3}
   m_Name: 
@@ -731,6 +731,8 @@ GameObject:
   - component: {fileID: 1131519566}
   - component: {fileID: 1131519565}
   - component: {fileID: 1131519564}
+  - component: {fileID: 1131519572}
+  - component: {fileID: 1131519571}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -802,7 +804,7 @@ MonoBehaviour:
   m_HumanSegmentationDepthMode: 2
   m_EnvironmentDepthMode: 3
   m_EnvironmentDepthTemporalSmoothing: 1
-  m_OcclusionPreferenceMode: 2
+  m_OcclusionPreferenceMode: 1
 --- !u!114 &1131519566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -988,6 +990,43 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1131519571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131519562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428eb62726fd471a8ae41b9d299b2c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetFrameRate: 20
+--- !u!114 &1131519572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131519562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11aa8f461d05f45f68d7b81ed08f1f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetFrameRate: 20
+  _optimalOcclusionDistanceMode: 0
+  _principalOccludee: {fileID: 0}
+  _isOcclusionSuppressionEnabled: 1
+  _semanticSegmentationManager: {fileID: 1131519571}
+  _suppressionChannels:
+  - sky
+  - ground
+  _isOcclusionStabilizationEnabled: 1
+  _meshManager: {fileID: 445843784}
+  _useCustomBackgroundMaterial: 0
+  _customBackgroundMaterial: {fileID: 0}
 --- !u!1 &1182766840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,7 +1074,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

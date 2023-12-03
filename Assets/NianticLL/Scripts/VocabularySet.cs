@@ -114,7 +114,7 @@ public class VocabularySet : MonoBehaviour
                                                     new Word("Cat", "猫 (Neko)"),
                                                     new Word("Fish", "魚 (Sakana)"),
                                                     new Word("Bird", "鳥 (Tori)"),
-                                                    new Word("Snake", "蛇 (Hebi)"),
+                                                    new Word("Snake", "ヘビ (Hebi)"),
                                                     new Word("Bug", "虫 (Mushi)"),
                                                     new Word("Monkey", "猿 (Saru)"),
                                                     new Word("Cow", "牛 (Ushi)"),

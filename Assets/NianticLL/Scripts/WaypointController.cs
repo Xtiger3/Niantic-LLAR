@@ -69,7 +69,7 @@ public class WaypointController : MonoBehaviour
         //Debug.Log("Loc for choice num " + npcChoice + ": " + Distance());
         if (Distance() < collisionDistance)
         {
-            if (npcChoice > 0) waypointObject.GetComponent<MeshFilter>().mesh = npcMesh[npcChoice];
+            //if (npcChoice > 0) waypointObject.GetComponent<MeshFilter>().mesh = npcMesh[npcChoice];
             star.SetActive(true);
             inPlayerRadius = true;
         }
@@ -125,11 +125,13 @@ public class WaypointController : MonoBehaviour
             //MapManager.Inst.NPCPos = transform.position;
             if (npcChoice == 0)
             {
+                this.gameObject.SetActive(false);
                 SceneManager.LoadScene("argame");
             }
 
             else if (npcChoice == 1)
             {
+                this.gameObject.SetActive(false);
                 SceneManager.LoadScene("intro");
                 VocabularySet.Instance.npcPrefab = prefabs[0];
                 if (VocabularySet.Instance.ongoingCategory.ContainsKey("Zero"))
@@ -140,6 +142,7 @@ public class WaypointController : MonoBehaviour
 
             else if (npcChoice == 2)
             {
+                this.gameObject.SetActive(false);
                 SceneManager.LoadScene("intro");
                 VocabularySet.Instance.npcPrefab = prefabs[1];
                 if (VocabularySet.Instance.ongoingCategory.ContainsKey("Maki"))
@@ -154,6 +157,7 @@ public class WaypointController : MonoBehaviour
 
             else if (npcChoice == 3)
             {
+                this.gameObject.SetActive(false);
                 SceneManager.LoadScene("intro");
                 VocabularySet.Instance.npcPrefab = prefabs[2];
                 if (VocabularySet.Instance.ongoingCategory.ContainsKey("OB"))

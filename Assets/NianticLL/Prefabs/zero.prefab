@@ -543,8 +543,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2297799968644051959}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 3}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: 0, y: 100, z: 3}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5155618899834660377}
@@ -593,10 +593,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!65 &1378670158098435755
 BoxCollider:
@@ -627,7 +627,6 @@ MonoBehaviour:
   dialogueSprite: {fileID: 21300000, guid: e6aa80e9277003b41929701a456588ff, type: 3}
   dialogueFileName: zero
   npcName: Zero
-  progression: 0
 --- !u!1 &2381233064236498095
 GameObject:
   m_ObjectHideFlags: 0

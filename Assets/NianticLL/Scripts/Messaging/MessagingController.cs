@@ -54,6 +54,7 @@ public class MessagingController : MonoBehaviour
             disableTouch = true;
             StartCoroutine(WelcomeMessages());
             MessageData.Inst.displayed = true;
+            MessageData.Inst.notif = false;
         }
         else if (MessageData.Inst.progression == 0 && MessageData.Inst.replied)
         {
@@ -91,13 +92,6 @@ public class MessagingController : MonoBehaviour
         else if (MessageData.Inst.progression == 3 && !MessageData.Inst.replied)
         {
             updatePlayerOption();
-        }
-
-        if (VocabularySet.Instance.ongoingCategory.ContainsKey("OB") && MessageData.Inst.progression == 1 && MessageData.Inst.displayed)
-        {
-            MessageData.Inst.progression++;
-            MessageData.Inst.displayed = false;
-            MessageData.Inst.notif = true;
         }
 
         // Disable the player reply option

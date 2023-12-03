@@ -41,7 +41,7 @@ public class CoverageManager : MonoBehaviour
         Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
         mapPos[1] = waypointYPos;
         GameObject test = Instantiate(obj, mapPos, obj.transform.rotation);
-        test.GetComponent<WaypointController>().npcChoice = 3;
+        test.GetComponent<WaypointController>().npcChoice = 2;
 
 
         if (Inst == null)
