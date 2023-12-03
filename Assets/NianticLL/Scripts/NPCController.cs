@@ -11,16 +11,28 @@ public class NPCController : MonoBehaviour
     public string npcName;
     private bool selected = false;
 
+    public int progression = -1;
+
     private void Start()
     {
         dialogueUI = GameObject.Find("DialogueCanvas").transform.GetChild(0).gameObject;
+        dialogueFileName = VocabularySet.Instance.dialogueFile;
     }
 
     private void Update()
     {
         if (dialogueUI.GetComponent<DialogueManager>().cooldown)
         {
-            // 
+            VocabularySet.Instance.AddToOngoingCategory(npcName);
+            MessageData.Inst.progression = progression;
+            if(progression != -1)
+            {
+                MessageData.Inst.displayed = false;
+                MessageData.Inst.notif = true;
+            }
+
+            if(VocabularySet.Instance.intro)
+                VocabularySet.Instance.LoadScene("CustomMap");
         }
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)

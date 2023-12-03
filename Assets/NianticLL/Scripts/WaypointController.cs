@@ -18,6 +18,8 @@ public class WaypointController : MonoBehaviour
 
     private Transform waypointObject;
     private List<string> npcAtWaypoint = new List<string> { "UFO", "Zero", "Maki", "OB" };
+
+    public List<GameObject> prefabs = new List<GameObject>();
     
     // Start is called before the first frame update
     void Start()
@@ -121,7 +123,52 @@ public class WaypointController : MonoBehaviour
         {
             //MapManager.Inst.NPCName = "CHANGE LATER";
             //MapManager.Inst.NPCPos = transform.position;
-            if (npcChoice == 0) SceneManager.LoadScene("argame");
+            if (npcChoice == 0)
+            {
+                SceneManager.LoadScene("argame");
+            }
+
+            else if (npcChoice == 1)
+            {
+                SceneManager.LoadScene("intro");
+                VocabularySet.Instance.npcPrefab = prefabs[0];
+                if (VocabularySet.Instance.ongoingCategory.ContainsKey("Zero"))
+                {
+                    VocabularySet.Instance.dialogueFile = "zero-quiz";
+                }
+            }
+
+            else if (npcChoice == 2)
+            {
+                SceneManager.LoadScene("intro");
+                VocabularySet.Instance.npcPrefab = prefabs[1];
+                if (VocabularySet.Instance.ongoingCategory.ContainsKey("Maki"))
+                {
+                    VocabularySet.Instance.dialogueFile = "maki_quiz";
+                }
+                else
+                {
+                    VocabularySet.Instance.dialogueFile = "maki_intro";
+                }
+            }
+
+            else if (npcChoice == 3)
+            {
+                SceneManager.LoadScene("intro");
+                VocabularySet.Instance.npcPrefab = prefabs[2];
+                if (VocabularySet.Instance.ongoingCategory.ContainsKey("Maki"))
+                {
+                    VocabularySet.Instance.dialogueFile = "ob-_uiz";
+                }
+                else
+                {
+                    VocabularySet.Instance.dialogueFile = "ob_intro";
+                }
+            }
+            else
+            {
+                Debug.Log("choice doesnt exist");
+            }
         }
         
     }

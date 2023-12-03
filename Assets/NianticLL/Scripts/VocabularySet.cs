@@ -36,6 +36,9 @@ public class VocabularySet : MonoBehaviour
 
     public bool intro = true;
 
+    public GameObject npcPrefab;
+    public string dialogueFile = "zero_intro";
+
     private void Awake()
     {
         NPCColor.Add("Maki", MakiPalette);

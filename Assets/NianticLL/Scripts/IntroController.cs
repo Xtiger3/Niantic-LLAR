@@ -18,17 +18,17 @@ public class IntroController : MonoBehaviour
         StartCoroutine(SpawnPrefab());
     }
 
-    private void Update()
-    {
-        if (dm.cooldown)
-        {
-            VocabularySet.Instance.AddToOngoingCategory("Zero");
-            VocabularySet.Instance.LoadScene("CustomMap");
-            MessageData.Inst.progression = 0;
-            MessageData.Inst.displayed = false;
-            MessageData.Inst.notif = true;
-        }
-    }
+    //private void Update()
+    //{
+    //    if (dm.cooldown)
+    //    {
+    //        VocabularySet.Instance.AddToOngoingCategory("Zero");
+    //        MessageData.Inst.progression = 0;
+    //        MessageData.Inst.displayed = false;
+    //        MessageData.Inst.notif = true;
+    //        VocabularySet.Instance.LoadScene("CustomMap");
+    //    }
+    //}
 
     public void SetName()
     {
@@ -43,9 +43,8 @@ public class IntroController : MonoBehaviour
 
     IEnumerator SpawnPrefab()
     {
-       
         yield return new WaitForSeconds(5f);
         scanningUI.SetActive(false);
-        Instantiate(prefab);
+        Instantiate(VocabularySet.Instance.npcPrefab);
     }
 }
