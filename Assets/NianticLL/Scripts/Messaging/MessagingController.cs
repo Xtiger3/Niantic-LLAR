@@ -8,6 +8,10 @@ using UnityEngine.SceneManagement;
 
 public class MessagingController : MonoBehaviour
 {
+
+    // To use this, increment MessageData.Inst.progression and set MessageData.Inst.displyed to false
+    // To add a message, follow the else if statement format
+
     public GameObject fromMessagePrefab;
     public GameObject toMessagePrefab;
     public GameObject scrollViewContent;
@@ -43,18 +47,22 @@ public class MessagingController : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(disableTouch);
+        //Debug.Log(MessageData.Inst.replied);
         if (MessageData.Inst.progression == 0 && !MessageData.Inst.displayed)
         {
+            MessageData.Inst.replied = false;
             disableTouch = true;
             StartCoroutine(WelcomeMessages());
             MessageData.Inst.displayed = true;
         }
-        else if (MessageData.Inst.progression == 0 && !MessageData.Inst.replied)
+        else if (MessageData.Inst.progression == 0 && MessageData.Inst.replied)
         {
-            updatePlayerOption();
+            MessageData.Inst.displayed = false;
+            Debug.Log(MessageData.Inst.displayed);
+            MessageData.Inst.progression++;
+            //MessageData.Inst.replied = true;
         }
-        else if (MessageData.Inst.progression == 1 && MessageData.Inst.replied && !MessageData.Inst.displayed)
+        else if (MessageData.Inst.progression == 1 && !MessageData.Inst.displayed)
         {
             disableTouch = true;
             StartCoroutine(WelcomeMessagesPart2());
@@ -85,7 +93,7 @@ public class MessagingController : MonoBehaviour
             updatePlayerOption();
         }
 
-        // 
+        // Disable the player reply option
         if (MessageData.Inst.replied)
         {
             //playerButtonText.text = "...";
@@ -165,9 +173,9 @@ public class MessagingController : MonoBehaviour
         yield return SendFromMessage("#012", "Welcome to ICRC!");
         yield return SendFromMessage("#027", "Welcome!");
         yield return SendFromMessage("#094", "Welcome to ICRC!");
+        playerButton.SetActive(true);
+        playerButton.transform.Find("UserText").transform.GetComponent<TextMeshProUGUI>().text = playerTexts[0];
         MessageData.Inst.replied = false;
-        MessageData.Inst.displayed = false;
-        MessageData.Inst.progression++;
         disableTouch = false;
     }
 
@@ -177,7 +185,6 @@ public class MessagingController : MonoBehaviour
         yield return SendFromMessage("Boss", "You might also find some Bins (my assistants) scattered around the map. They are hungry for knowledge so make sure to feed them if you bump into them!");
         MessageData.Inst.replied = false;
         disableTouch = false;
-        //MessageData.Inst.progression++;
     }
 
     IEnumerator OBEncounter()
@@ -186,7 +193,6 @@ public class MessagingController : MonoBehaviour
         yield return SendFromMessage("#114", "Come find me whenever you are ready to be quizzed ^ - ^");
         MessageData.Inst.replied = false;
         disableTouch = false;
-        //MessageData.Inst.progression++;
     }
 
     IEnumerator FirstCompletion()
@@ -195,13 +201,11 @@ public class MessagingController : MonoBehaviour
         yield return SendFromMessage("#114", "Wow you are fast ºOº");
         MessageData.Inst.replied = false;
         disableTouch = false;
-        //MessageData.Inst.progression++;
     }
 
 
     private void updatePlayerOption()
     {
-        //playerButtonText.text = playerTexts[MessageData.Inst.progression - 1];
         playerButton.SetActive(true);
         playerButton.transform.Find("UserText").transform.GetComponent<TextMeshProUGUI>().text = playerTexts[MessageData.Inst.progression];
     }
@@ -212,6 +216,7 @@ public class MessagingController : MonoBehaviour
         if (!MessageData.Inst.replied)
         {
             StartCoroutine(SendToMessage(playerTexts[MessageData.Inst.progression]));
+            //if (MessageData.Inst.progression == 0) MessageData.Inst.progression++;
         }
         disableTouch = false;
     }
