@@ -23,15 +23,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/NianticLL/Scenes/em_test.unity
     guid: e08c0e7960cee45e0bca4f42901bb610
-  - enabled: 1
+  - enabled: 0
     path: Assets/NianticLL/Scenes/intro.unity
     guid: a9aa8d94202e1174d971bc5fb170438f
   - enabled: 1
-    path: Assets/NianticLL/Scenes/LoadingScreen.unity
-    guid: c685ce5617342cc44b8b1140e8fb9b20
-  - enabled: 1
     path: Assets/NianticLL/Scenes/CustomMap.unity
     guid: b85490a38aa244b7fa90fde81a3061e6
+  - enabled: 0
+    path: Assets/NianticLL/Scenes/LoadingScreen.unity
+    guid: c685ce5617342cc44b8b1140e8fb9b20
   - enabled: 1
     path: Assets/NianticLL/Scenes/DictionaryUI.unity
     guid: 040b289855b12ae40a839e77166d020c

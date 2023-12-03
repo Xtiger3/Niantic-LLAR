@@ -103,13 +103,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd65a7b7bf4554f61990ef686b1273d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionDistance: 35
+  collisionDistance: 100
   spinSpeed: 10
   npcMesh:
   - {fileID: 5512361600001258384, guid: dd30368221b8e45a1a4395703ed1ea5e, type: 3}
   - {fileID: 2534964839176971238, guid: a0b567d3066bf4c1c9fff4261d59ec07, type: 3}
   - {fileID: -125435165217083709, guid: 859f64a55f8af44a7b3c21befd9354de, type: 3}
   - {fileID: 6255687079079774844, guid: 42b744861c234459aaf41c608d12c97a, type: 3}
+  star: {fileID: 8707037011637747967}
   npcChoice: 0
 --- !u!135 &1885067022183861564
 SphereCollider:
@@ -5095,7 +5096,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5612865093076623138
 Transform:
   m_ObjectHideFlags: 0
