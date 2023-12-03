@@ -24,6 +24,9 @@ public class IntroController : MonoBehaviour
         {
             VocabularySet.Instance.AddToOngoingCategory("Zero");
             VocabularySet.Instance.LoadScene("CustomMap");
+            MessageData.Inst.progression = 0;
+            MessageData.Inst.displayed = false;
+            MessageData.Inst.notif = true;
         }
     }
 

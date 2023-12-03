@@ -91,7 +91,7 @@ public class VocabularySet : MonoBehaviour
                                                 new Word("Tonight", "今夜 (Konya)")};
 
         Category greetingsCategory = new Category("GREETINGS");
-        greetingsCategory.Words = new List<Word> {new Word("Greetings", "挨拶 (Aisatsu)"),
+        greetingsCategory.Words = new List<Word> {new Word("Greetings", "あいさつ (Aisatsu)"),
                                                     new Word("Hello", "こんにちは (Konnichiwa)"),
                                                     new Word("Thank you", "ありがとう (Arigatou)"),
                                                     new Word("Goodbye", "さようなら (Sayonara)"),

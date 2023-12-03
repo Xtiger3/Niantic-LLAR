@@ -10,6 +10,21 @@ public class CBSceneManager : MonoBehaviour
     // 1 is maki
     // 2 is ob
 
+    public GameObject obHide;
+    public GameObject makiHide;
+
+    private void Start()
+    {
+        if (VocabularySet.Instance.ongoingCategory.ContainsKey("Maki"))
+        {
+            makiHide.SetActive(false);
+        }
+        if (VocabularySet.Instance.ongoingCategory.ContainsKey("OB"))
+        {
+            obHide.SetActive(false);
+        }
+    }
+
     public void LoadScene(int characterNum)
     {
         CBcharacter = characterNum;

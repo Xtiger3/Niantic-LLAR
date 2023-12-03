@@ -23,9 +23,20 @@ public class TC : MonoBehaviour
 
     private bool coroutine_running = false;
 
+    public GameObject notif;
+
     private void Start()
     {
         initialPos = new Vector3[tc_parts.Length];
+
+        if (MessageData.Inst.notif)
+        {
+            notif.SetActive(true);
+        }
+        else
+        {
+            notif.SetActive(false);
+        }
     }
 
     private void Update()
@@ -158,5 +169,10 @@ public class TC : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    public void CloseNotif()
+    {
+        MessageData.Inst.notif = false;
     }
 }

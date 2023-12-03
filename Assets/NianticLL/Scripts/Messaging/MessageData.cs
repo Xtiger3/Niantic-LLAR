@@ -10,6 +10,7 @@ public class MessageData : MonoBehaviour
     public List<Message> textToDisplayOnStart = new List<Message>();
     public bool displayed = false;
     public bool replied = true;
+    public bool notif = false;
 
 
     // Start is called before the first frame update
