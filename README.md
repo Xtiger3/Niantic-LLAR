@@ -3,6 +3,7 @@ Currently our demo is a slice in the project: we’ve implemented a lot of the b
 
 # System Requirements
 - **Compatabile Devices**: iPhone 13 and above
+- iPhones with iOS 17+ may crash or fail to build
 
 # Build Settings
 Before building the app, ensure the following scenes are checked in your build settings:
