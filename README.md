@@ -39,4 +39,9 @@ In this demo, users can experience:
    
 # Music Credits 
 - Jeremy Blake - Powerup!  NO COPYRIGHT 8-bit Music
-- Super Noot Ensemble - Memo | cute, 8 bit, chiptune 
+- Super Noot Ensemble - Memo | cute, 8 bit, chiptune
+  
+# Font Credits
+- http://www.dsg4.com/04/extra/bitmap/index.html
+  - 04b-21
+  - 04b-30
