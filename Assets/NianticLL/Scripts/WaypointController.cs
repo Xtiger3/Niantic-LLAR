@@ -172,6 +172,7 @@ public class WaypointController : MonoBehaviour
             }
 
             VocabularySet.Instance.dontDisplayWayspots.Add(wayspotName);
+            Debug.Log("Added don't display: " + wayspotName);
         }
         
     }

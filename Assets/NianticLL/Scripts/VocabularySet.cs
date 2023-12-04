@@ -42,13 +42,7 @@ public class VocabularySet : MonoBehaviour
     public List<int> notDisplayedNPCs = new List<int> { 0, 0, 1, 2, 3 };
     public List<string> dontDisplayWayspots = new List<string>();
 
-    public List<string> npcToIndex = new List<string>
-    {
-        { "Star" },
-        { "Zero" },
-        { "Maki" },
-        { "OB" },
-    };
+    public List<string> npcToIndex = new List<string> { "Star", "Zero", "Maki", "OB" };
 
     private void Awake()
     {
@@ -147,14 +141,33 @@ public class VocabularySet : MonoBehaviour
         categories.Add(idkkk);
         categories.Add(reviewCategory);
 
-        AddToOngoingCategory("Zero");
-        AddToOngoingCategory("Maki");
-        AddToOngoingCategory("OB");
+        //AddToOngoingCategory("Zero");
+        //AddToOngoingCategory("Maki");
+        //AddToOngoingCategory("OB");
     }
 
     private void Update()
     {
         IncrementStepCount();
+        CheckNPCComplete();
+    }
+
+    private void CheckNPCComplete()
+    {
+
+        Debug.Log("VocabSet: ");
+        foreach (int choice in notDisplayedNPCs)
+        {
+            //Debug.Log(choice);
+            // If the dialogue is completed
+            if (choice != 0 && ongoingCategory[npcToIndex[choice]] == 1)
+            {
+                Debug.Log("change to 0 called");
+                notDisplayedNPCs.Remove(choice);
+                notDisplayedNPCs.Add(0);
+            }
+        }
+            
     }
 
     private const float StepThreshold = 1.45f; // Adjust threshold
