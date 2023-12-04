@@ -1,4 +1,4 @@
-# Niantic-LLAR
+# AR Language Learning App
 Currently our demo is a slice in the project: we’ve implemented a lot of the base systems so future additions to the app are very convenient and easy. 
 
 # System Requirements
@@ -17,6 +17,7 @@ Before building the app, ensure the following scenes are checked in your build s
 
 # Demo Highlights
 In this demo, users can experience:
+  - Japanese language learning option
   - Vocabulary Sets:
     - Dr. Zero: Greetings and Family/Relationships (Sets 1 and 2)
     - Maki: Numbers (Set 1)
