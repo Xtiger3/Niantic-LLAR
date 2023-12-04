@@ -5,6 +5,11 @@ Currently our demo is a slice in the project: we’ve implemented a lot of the b
 - **Compatabile Devices**: iPhone 13 and above
 - iPhones with iOS 17+ may crash or fail to build
 
+# Package Dependencies
+- **Lightship Maps SDK**: https://github.com/niantic-lightship/maps-upm/releases/tag/v0.4.0
+- **Niantic Lightship Shared AR Client Plugin**: https://github.com/niantic-lightship/sharedar-upm.git
+- **Niantic Lightship AR Plugin**: https://github.com/niantic-lightship/ardk-upm.git
+
 # Build Settings
 Before building the app, ensure the following scenes are checked in your build settings:
  - intro
