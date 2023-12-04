@@ -16,12 +16,12 @@ public class DontDestroyAudio : MonoBehaviour
 
         if (Inst != null && Inst != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
             Inst = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 
@@ -60,6 +60,7 @@ public class DontDestroyAudio : MonoBehaviour
                 GetComponent<AudioSource>().clip = audios[0];
                 GetComponent<AudioSource>().Play();
             }
+            sceneName = scene.name;
         }
     }
 
