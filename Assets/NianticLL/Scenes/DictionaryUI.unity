@@ -1010,6 +1010,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
+--- !u!114 &221607033 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2409620720823104368, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
+  m_PrefabInstance: {fileID: 221607032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &221607034 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2409620721195704369, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
+  m_PrefabInstance: {fileID: 221607032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &221607035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2409620720083093247, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
+  m_PrefabInstance: {fileID: 221607032}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &250948935
 GameObject:
   m_ObjectHideFlags: 0
@@ -2532,6 +2559,21 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2409620720083093244, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
   m_PrefabInstance: {fileID: 221607032}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &591217559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221607035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808fb44b0819147cc89ade9bd7ae0c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressText: {fileID: 221607033}
+  progressBar: {fileID: 221607034}
+  npcName: OB
 --- !u!1 &594172329
 GameObject:
   m_ObjectHideFlags: 0
@@ -2990,8 +3032,39 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.22745098
       objectReference: {fileID: 0}
+    - target: {fileID: 2409620721195704369, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
+--- !u!114 &635452119 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2409620720823104368, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
+  m_PrefabInstance: {fileID: 635452118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &635452120 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2409620721195704369, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
+  m_PrefabInstance: {fileID: 635452118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &635452121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2409620720083093247, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
+  m_PrefabInstance: {fileID: 635452118}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &659647157
 GameObject:
   m_ObjectHideFlags: 0
@@ -5089,6 +5162,12 @@ MonoBehaviour:
   intro: 1
   npcPrefab: {fileID: 0}
   dialogueFile: zero_intro
+  notDisplayedNPCs: 0000000000000000010000000200000003000000
+  npcToIndex:
+  - Star
+  - Zero
+  - Maki
+  - OB
   stepCount: 0
 --- !u!4 &1552637714
 Transform:
@@ -6870,6 +6949,21 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2409620720083093244, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
   m_PrefabInstance: {fileID: 635452118}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2079930979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635452121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808fb44b0819147cc89ade9bd7ae0c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressText: {fileID: 635452119}
+  progressBar: {fileID: 635452120}
+  npcName: Zero
 --- !u!1 &2085816668
 GameObject:
   m_ObjectHideFlags: 0
@@ -7212,3 +7306,45 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
+--- !u!114 &2409620721224195547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2409620720823104368, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
+  m_PrefabInstance: {fileID: 2409620721224195546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2409620721224195548 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2409620721195704369, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
+  m_PrefabInstance: {fileID: 2409620721224195546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2409620721224195549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2409620720083093247, guid: 24e0d985b0c6442a1b06deb29688c598, type: 3}
+  m_PrefabInstance: {fileID: 2409620721224195546}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2409620721224195550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2409620721224195549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808fb44b0819147cc89ade9bd7ae0c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressText: {fileID: 2409620721224195547}
+  progressBar: {fileID: 2409620721224195548}
+  npcName: Maki

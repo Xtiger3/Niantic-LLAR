@@ -43,7 +43,7 @@ public class IntroController : MonoBehaviour
 
     IEnumerator SpawnPrefab()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         scanningUI.SetActive(false);
         Instantiate(VocabularySet.Instance.npcPrefab);
     }

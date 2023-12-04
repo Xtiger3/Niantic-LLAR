@@ -25,23 +25,25 @@ public class CoverageManager : MonoBehaviour
     private GameObject obj;
 
     private float waypointYPos;
-    private Dictionary<string, GameObject> currWayspots = new();
-    private List<int> notDisplayedNPCs = new List<int> { 0, 0, 1, 2, 3 };
+    //private List<int> notDisplayedNPCs = new List<int> { 0, 0, 1, 2, 3 };
 
     public static CoverageManager Inst;
     public int numNPC = 3;
     public Vector3 NPCPos;
     public GameObject NPC;
 
+    public Dictionary<string, GameObject> currWayspots = new Dictionary<string, GameObject>();
+    
+
     private void Start()
     {
         waypointYPos = obj.transform.position.y;
 
-        MapsLatLng mapLatLng = new MapsLatLng(42.2814713, -83.7435344);
-        Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
-        mapPos[1] = waypointYPos;
-        GameObject test = Instantiate(obj, mapPos, obj.transform.rotation);
-        test.GetComponent<WaypointController>().npcChoice = 2;
+        //MapsLatLng mapLatLng = new MapsLatLng(42.2814713, -83.7435344);
+        //Vector3 mapPos = _lightshipMapView.LatLngToScene(mapLatLng);
+        //mapPos[1] = waypointYPos;
+        //GameObject test = Instantiate(obj, mapPos, obj.transform.rotation);
+        //test.GetComponent<WaypointController>().npcChoice = 0;
 
 
         if (Inst == null)
@@ -85,7 +87,20 @@ public class CoverageManager : MonoBehaviour
             else if (areaTargets.Count > 0)
             {
                 int choice = item.Value.GetComponent<WaypointController>().npcChoice;
-                notDisplayedNPCs.Add(choice);
+                if (VocabularySet.Instance.ongoingCategory[VocabularySet.Instance.npcToIndex[choice]] == 1)
+                {
+                    VocabularySet.Instance.notDisplayedNPCs.Add(0);
+
+                } else
+                {
+                    VocabularySet.Instance.notDisplayedNPCs.Add(choice);
+                }
+
+                if (VocabularySet.Instance.dontDisplayWayspots.Contains(item.Key))
+                {
+                    VocabularySet.Instance.dontDisplayWayspots.Remove(item.Key);
+                }
+
                 Destroy(item.Value);
                 currWayspots.Remove(item.Key);
                 // Debug.Log("destroyed gameobj: " + item.Value);
@@ -102,6 +117,7 @@ public class CoverageManager : MonoBehaviour
 
             string wayspotName = areaTargets[i].Target.Name;
 
+            // If the wayspot is already displayed
             if (currWayspots.ContainsKey(wayspotName))
             {
                 // Update the wayspot position
@@ -110,19 +126,33 @@ public class CoverageManager : MonoBehaviour
             }
             else
             {
-                // Draw the new wayspot
-                GameObject wayspot = Instantiate(obj, mapPos, obj.transform.rotation);
+                // If the wayspot is already clicked
+                if (VocabularySet.Instance.dontDisplayWayspots.Contains(wayspotName))
+                {
 
-                // Add it to dictionary
-                currWayspots[areaTargets[i].Target.Name] = wayspot;
+                }
 
-                // Decide NPC for waypoint
-                int choice = notDisplayedNPCs[UnityEngine.Random.Range(0, notDisplayedNPCs.Count)];
-                wayspot.GetComponent<WaypointController>().npcChoice = choice;
+                else
+                {
+                    // Draw the new wayspot
+                    GameObject wayspot = Instantiate(obj, mapPos, obj.transform.rotation);
 
-                notDisplayedNPCs.Remove(choice);
+                    // Add it to dictionary
+                    currWayspots[areaTargets[i].Target.Name] = wayspot;
 
-                //Debug.Log("added gameobj: " + wayspotName);
+                    // Decide NPC for waypoint
+                    int choice = VocabularySet.Instance.notDisplayedNPCs[UnityEngine.Random.Range(0, VocabularySet.Instance.notDisplayedNPCs.Count)];
+                    wayspot.GetComponent<WaypointController>().npcChoice = choice;
+                    wayspot.GetComponent<WaypointController>().wayspotName = areaTargets[i].Target.Name;
+
+                    VocabularySet.Instance.notDisplayedNPCs.Remove(choice);
+
+                    //Debug.Log("choice is: " + choice);
+                    //Debug.Log("entire list is: " + VocabularySet.Instance.notDisplayedNPCs.ToString());
+
+                    //Debug.Log("added gameobj: " + wayspotName);
+                }
+
             }
         }
     }

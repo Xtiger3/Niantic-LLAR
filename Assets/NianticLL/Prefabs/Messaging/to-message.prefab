@@ -266,7 +266,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: xtiger3
+  m_text: You
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b9ef996ab5ad40e2b4a952b4b186ada, type: 2}
   m_sharedMaterial: {fileID: 114264323674262431, guid: 4b9ef996ab5ad40e2b4a952b4b186ada, type: 2}

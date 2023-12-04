@@ -417,9 +417,10 @@ public class FCManager : MonoBehaviour
         bool isSwipeRight = endTouchPosition.x > startTouchPosition.x;
         if (WordsIndex < WordsTotal)
         {
+          
             if (Round == 0)
-            { 
-
+            {
+                if (WordsIndex == 0) WordsIndex++;
                 UpdateLearningLevel(WordsIndex, isSwipeRight);
                 UpdateCardUI(selectedCategory.Words[WordsIndex]);
                 WordsIndex++;

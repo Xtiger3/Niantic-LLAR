@@ -23,10 +23,13 @@ public class QuizController : MonoBehaviour
     public Color correctColor;
     public Color wrongColor;
 
+    string npcName;
+
     private void Start()
     {
         //quizWords = VocabularySet.Instance.GetCategoryByName("DAYS").Words;
-        quizWords = VocabularySet.Instance.GetCategoryByName(VocabularySet.Instance.NPCs[dm.nameText.text][VocabularySet.Instance.ongoingCategory[dm.nameText.text]]).Words;
+        npcName = (dm.nameText.text)[0] + (dm.nameText.text).Substring(1, dm.nameText.text.Length);
+        quizWords = VocabularySet.Instance.GetCategoryByName(VocabularySet.Instance.NPCs[npcName][VocabularySet.Instance.ongoingCategory[npcName]]).Words;
         randomJapaneseIndices = ShuffleIndices();
         PopulateQuestion();
     }
@@ -68,6 +71,10 @@ public class QuizController : MonoBehaviour
             if(countCorrect == quizWords.Count)
             {
                 string dialogue = "Splendid! You got all of them correct! Come back for more vocab sets.";
+                VocabularySet.Instance.GetCategoryByName(VocabularySet.Instance.NPCs[npcName][VocabularySet.Instance.ongoingCategory[npcName]]).MarkAsComplete();
+                VocabularySet.Instance.AddToOngoingCategory(npcName);
+                //VocabularySet.Instance.notDisplayedNPCs.Remove(VocabularySet.Instance.npcToIndex[npcName]);
+                //VocabularySet.Instance.notDisplayedNPCs.Add(0);
                 yield return StartCoroutine(dm.TextFlow(dialogue, 0));
             }
             else

@@ -19,7 +19,7 @@ public class TC : MonoBehaviour
 
     public GameObject menu;
 
-    private bool open = false;
+    private bool open = true;
 
     private bool coroutine_running = false;
 
@@ -90,6 +90,7 @@ public class TC : MonoBehaviour
         for (int i = 0; i < tc_parts.Length; ++i)
         {
             initialPos[i] = tc_parts[i].localPosition;
+            initialPos[i].y = 0f;
         }
 
         yield return Elongate();

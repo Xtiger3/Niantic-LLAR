@@ -8,8 +8,10 @@ public class DontDestroyAudio : MonoBehaviour
     public AudioClip[] audios;
     public static DontDestroyAudio Inst;
 
+    private string sceneName = "";
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 
         if (Inst != null && Inst != this)
@@ -19,20 +21,55 @@ public class DontDestroyAudio : MonoBehaviour
         else
         {
             Inst = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
     }
 
     // Update is called once per frame
-    void Update()
+    //void Update()
+    //{
+    //    if (SceneManager.GetActiveScene().name == "argame")
+    //    {
+    //        this.GetComponent<AudioSource>().clip = audios[1];
+    //        GetComponent<AudioSource>().Play();
+    //    }
+    //    else
+    //    {
+    //        this.GetComponent<AudioSource>().clip = audios[0];
+    //        GetComponent<AudioSource>().Play();
+    //    }
+    //}
+
+    void OnEnable()
     {
-        if (SceneManager.GetActiveScene().name == "argame")
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "argame")
         {
-            this.GetComponent<AudioSource>().clip = audios[1];
+            GetComponent<AudioSource>().clip = audios[1];
+            GetComponent<AudioSource>().Play();
+            sceneName = scene.name;
         }
         else
         {
-            this.GetComponent<AudioSource>().clip = audios[0];
+            if (sceneName == "argame")
+            {
+                GetComponent<AudioSource>().clip = audios[0];
+                GetComponent<AudioSource>().Play();
+            }
         }
+    }
+
+    void Start()
+    {
+
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

@@ -26,6 +26,8 @@ public class VocabDisplayManager : MonoBehaviour
 
     private Color mainBGColor;
 
+
+
     private Dictionary<string, List<string>> NPCs;
     private void Start()
     {

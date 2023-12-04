@@ -9,7 +9,7 @@ public class MessageData : MonoBehaviour
     public int progression = 0;
     public List<Message> textToDisplayOnStart = new List<Message>();
     public bool displayed = false;
-    public bool replied = true;
+    public bool replied = false;
     public bool notif = true;
 
 
@@ -30,13 +30,14 @@ public class MessageData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!displayed) notif = true;
+        //if (!displayed) notif = true;
 
+        if (progression == 0 && !displayed && !replied) { notif = true; }
         if (VocabularySet.Instance.ongoingCategory.ContainsKey("OB") && progression == 1 && displayed)
         {
             progression++;
             displayed = false;
-            //MessageData.Inst.notif = true;
+            notif = true;
         }
     }
 

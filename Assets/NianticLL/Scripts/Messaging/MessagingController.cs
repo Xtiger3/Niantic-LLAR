@@ -62,16 +62,22 @@ public class MessagingController : MonoBehaviour
             Debug.Log(MessageData.Inst.displayed);
             MessageData.Inst.progression++;
             //MessageData.Inst.replied = true;
+            MessageData.Inst.notif = false;
+
         }
         else if (MessageData.Inst.progression == 1 && !MessageData.Inst.displayed)
         {
             disableTouch = true;
             StartCoroutine(WelcomeMessagesPart2());
             MessageData.Inst.displayed = true;
+            MessageData.Inst.notif = false;
+
         }
         else if (MessageData.Inst.progression == 1 && !MessageData.Inst.replied)
         {
             updatePlayerOption();
+            MessageData.Inst.notif = false;
+
         }
         else if (MessageData.Inst.progression == 2 && !MessageData.Inst.displayed)
         {

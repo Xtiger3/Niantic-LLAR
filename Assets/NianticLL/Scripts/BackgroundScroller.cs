@@ -31,7 +31,7 @@ public class BackgroundScroller : MonoBehaviour
             bg.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(GetComponent<RectTransform>().anchoredPosition.x - GetComponent<RectTransform>().rect.width, GetComponent<RectTransform>().anchoredPosition.y, originalZ);
             bg.transform.SetSiblingIndex(0);
             bg.GetComponent<BackgroundScroller>().canSpawn = false;
-            Debug.Log(bg.GetComponent<RectTransform>().anchoredPosition);
+            //Debug.Log(bg.GetComponent<RectTransform>().anchoredPosition);
 
             GameObject bgy = Instantiate(backgroundPrefab, Vector3.zero, Quaternion.identity, transform.parent);
             bgy.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(GetComponent<RectTransform>().anchoredPosition.x, GetComponent<RectTransform>().rect.height + GetComponent<RectTransform>().anchoredPosition.y + offset, originalZ);

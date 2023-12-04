@@ -112,6 +112,7 @@ MonoBehaviour:
   - {fileID: 6255687079079774844, guid: 42b744861c234459aaf41c608d12c97a, type: 3}
   star: {fileID: 8707037011637747967}
   npcChoice: 0
+  wayspotName: 
   prefabs:
   - {fileID: 2297799968644051959, guid: 71de0aafb13530247b55984631538795, type: 3}
   - {fileID: 7715744893778640171, guid: 6adab9d07c4104bb8a9927d830e83cd5, type: 3}

@@ -39,6 +39,17 @@ public class VocabularySet : MonoBehaviour
     public GameObject npcPrefab;
     public string dialogueFile = "zero_intro";
 
+    public List<int> notDisplayedNPCs = new List<int> { 0, 0, 1, 2, 3 };
+    public List<string> dontDisplayWayspots = new List<string>();
+
+    public List<string> npcToIndex = new List<string>
+    {
+        { "Star" },
+        { "Zero" },
+        { "Maki" },
+        { "OB" },
+    };
+
     private void Awake()
     {
         NPCColor.Add("Maki", MakiPalette);
@@ -135,6 +146,10 @@ public class VocabularySet : MonoBehaviour
         categories.Add(animalsCategory);
         categories.Add(idkkk);
         categories.Add(reviewCategory);
+
+        AddToOngoingCategory("Zero");
+        AddToOngoingCategory("Maki");
+        AddToOngoingCategory("OB");
     }
 
     private void Update()

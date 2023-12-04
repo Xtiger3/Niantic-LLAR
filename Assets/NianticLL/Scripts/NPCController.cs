@@ -40,8 +40,11 @@ public class NPCController : MonoBehaviour
             //    MessageData.Inst.notif = true;
             //}
 
-            if(VocabularySet.Instance.intro)
+            if (VocabularySet.Instance.intro)
+            {
+                VocabularySet.Instance.intro = false;
                 VocabularySet.Instance.LoadScene("CustomMap");
+            }
         }
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
